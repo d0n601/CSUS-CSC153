@@ -68,34 +68,34 @@ Now it's time to validate our aquired data. We can do this via **dcfldd** via th
 ## Post-Activity Questions
 
 1. What are the two broad categories of acquisition?
- 	* Static Acquisition.
-  * Live Acquisition.
+ 	  * Static Acquisition.
+    * Live Acquisition.
 
 2. What is a live storage acquisition and when is it used?
-  * Data is collected from the local computer or over a network while running. Not repeatable because data continually being altered by the OS.
-  * Used when a computer cannot be shut down.
+    * Data is collected from the local computer or over a network while running. Not repeatable because data continually being altered by the OS.
+    * Used when a computer cannot be shut down.
 
 3. Which command should be used to check the disks available on the current system? You only need to state the command name, not the entire command string.
-  * fdisk is used, `fdisk -l`.
+    * fdisk is used, `fdisk -l`.
 
 4. The `mkfs -t` command does what?
- * Makes a file system of a certain type.
+    * Makes a file system of a certain type.
 
 5. Which drive should be 'zeroed out', the source evidence drive or the target drive?
-  * The target drive.
+    * The target drive.
 
 6. What is the purpose of 'zeroing out' before a storage acquisition is performed?
-  * To ensure there is actually absolutely nothing on the drive. Such as software/malware from the vendor that may effect evidence.
+    * To ensure there is actually absolutely nothing on the drive. Such as software/malware from the vendor that may effect evidence.
 
 7. When you issue the command the command `dd if=/dev/zero of=/dev/sdb`, What does the string `/dev/sdb` represent?
-  * This command zeroes out the target drive, before we copy evidence to it. So, `/dev/sdb` represents the target drive.
+    * This command zeroes out the target drive, before we copy evidence to it. So, `/dev/sdb` represents the target drive.
 
 8. The `md5sum /dev/sda` command does what? Why is it used?
-  * This command would generate a hash of the drive on which CAINE is installed. I think this question intended to say `/dev/sdc`? We do this to create a hash of the evidence before we copy it, to compare with the hash of our copy to validate that they're the same.
+    * This command would generate a hash of the drive on which CAINE is installed. I think this question intended to say `/dev/sdc`? We do this to create a hash of the evidence before we copy it, to compare with the hash of our copy to validate that they're the same.
 
 9. How many times should the md5sumcommand be used at least in one acquisition?
-	* Once for the pre-image source when we hash the evidence drive.
-	* Once for the post-image source when we hash our image after acquisition.
+  	* Once for the pre-image source when we hash the evidence drive.
+	  * Once for the post-image source when we hash our image after acquisition.
 
 10. Instead of using “dd”, what other commands can you use to perform data acquisition in Linux?
-  * You can use *dcfldd*, if it's installed, which is the DoD's enhanced version of *dd*.
+    * You can use *dcfldd*, if it's installed, which is the DoD's enhanced version of *dd*.
