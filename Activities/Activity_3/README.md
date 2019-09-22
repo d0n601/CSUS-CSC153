@@ -69,10 +69,11 @@ Now it's time to validate our aquired data. We can do this via **dcfldd** via th
 
 1. What are the two broad categories of acquisition?
  	* Static Acquisition.
- 	* Live Acquisition.
+  * Live Acquisition.
 
 2. What is a live storage acquisition and when is it used?
-  * When a computer cannot be shut down.
+  * Data is collected from the local computer or over a network while running. Not repeatable because data continually being altered by the OS.
+  * Used when a computer cannot be shut down.
 
 3. Which command should be used to check the disks available on the current system? You only need to state the command name, not the entire command string.
   * fdisk is used, `fdisk -l`.
