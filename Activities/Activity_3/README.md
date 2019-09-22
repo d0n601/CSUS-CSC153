@@ -95,7 +95,7 @@ Now it's time to validate our aquired data. We can do this via **dcfldd** via th
 
 9. How many times should the md5sumcommand be used at least in one acquisition?
   	* Once for the pre-image source when we hash the evidence drive.
-	  * Once for the post-image source when we hash our image after acquisition.
+    * Once for the post-image source when we hash our image after acquisition.
 
 10. Instead of using “dd”, what other commands can you use to perform data acquisition in Linux?
     * You can use *dcfldd*, if it's installed, which is the DoD's enhanced version of *dd*.
