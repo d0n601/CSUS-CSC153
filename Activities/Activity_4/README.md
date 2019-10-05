@@ -3,28 +3,24 @@
 
 
 ## Scenario
-Last week University police arrested a student, Billy Badguy, for selling cocaine. During the pursuit the student threw a USB drive into a storm drain. The Office of the Physical Plant (OPP) was contacted and they were able to recover the USB drive. The Police department has asked you to perform a forensic analysis on this USB drive. You have created an image and left it on your desktop. When you open the USB with your own machine, you’ll see that only two files are shown in the USB: boring.jpg and where were you.mp3. Your task is to reveal more information by analyzing the image.
+Last week University police arrested a student, Billy Badguy, for selling cocaine. During the pursuit the student threw a USB drive into a storm drain. The Office of the Physical Plant (OPP) was contacted and they were able to recover the USB drive. The Police department has asked you to perform a forensic analysis on this USB drive. You have created an image and left it on your desktop. When you open the USB with your own machine, you’ll see that only two files are shown in the USB: `boring.jpg` and `where were you.mp3`. Your task is to reveal more information by analyzing the image.
 
 ### Tasks 0 through 2
 Below are the steps taken to create a case and investigate the suspect's drive using Autopsy.
 
 Download the image of suspect’s drive, open Autopsy.  
-
 ![open_autopsy](./images/open_autopsy.png)
 **Figure 1:** Open Autopsy browser.
 
 Create a new case to begin our investigation.  
-
 ![CreateCase](./images/CreateCase.png)
 **Figure 2:** Create a new case.
 
-Add a new host.
-
+Add a new host.  
 ![AddHost](./images/AddHost.png)
 **Figure 3:** Add host.
 
-Adding an image of the suspect's drive.
-
+Adding an image of the suspect's drive.  
 ![AddImage](./images/AddImage.png)
 **Figure 4:** Adding an image.
 
@@ -89,5 +85,5 @@ eventually?
 
     * We can determine the first names of the other individuals involved to be Kate, Johnny, Linz, and Bob. All the names listen in the `boring.jpg` Microsoft Excel sheet. See figure 12, a repeat of figure 10.
 
-    ![boring_opened](./images/boring_opened.jpg)
+    ![boring_opened](./images/boring_opened.png)
     **Figure 12:** The first names of those involved are in the dealers column.
