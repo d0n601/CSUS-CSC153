@@ -44,7 +44,7 @@ In preparation for this Lab I've installed [CAIN 10.0](https://www.caine-live.ne
 
 ### Creating an Image  
 
-After the evidence drive was ready I mounted it at `/mnt/sdc1`, created a new directory called `case1` and generated a pre-image hash of my laptop's drive.
+After the evidence drive was ready I mounted it at `/mnt/sdc1`, created a new directory called `case1` and generated a pre-image hash of my laptop's drive.  
 ![mount_and_hash](./images/mount_hash.png)  
 \ **Figure 5:** Mounting evidence drive and generating hash of target drive into case directory.
 
@@ -83,7 +83,7 @@ When the image is being analyzed we can see that it's going to be an encrypted f
 Now at this point I ran into a big issue. There was almost no useful information apparent. We need to decrypt the image, see below.
 
 ### Mounting and Decrypting the Disk Image  
-In order to decrypt the disk image we first mount it under `/mnt/sda1`. Once the was mounted we're able to navigate it as though it's another disk on the system. I navigated to the encrypted home directory to begin the decryption process.
+In order to decrypt the disk image we first mount it under `/mnt/sda1`. Once the was mounted we're able to navigate it as though it's another disk on the system. I navigated to the encrypted home directory to begin the decryption process.  
 ![oh_no_encrypted](./images/oh_no_encrypted.png)
 \ **Figure 13:** Encrypted directory.
 
