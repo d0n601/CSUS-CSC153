@@ -10,11 +10,11 @@ This lab took me **significantly** longer than it was intended to. I spent proba
 
 
 ## Data Acquisition  
-In preparation for this Lab I've installed [CAIN 10.0](https://www.caine-live.net/) onto a flash drive.  
+In preparation for this Lab I've installed [CAIN 10.0](https://www.caine-live.net/) onto a flash drive, and this is the drive from which I ran the lab.  
 
 ### Preparing the Evidence Drive  
 
- The computer I'll be investigating for this lab is my laptop, which has a 256GB SSD with Ubuntu 16.04 installed. So, the first thing to be done is prepare my evidence drive, which is 500GB hard disk, large enough to fit an image of my laptop's entire drive. The drive on my laptop is `/dev/sda`, the CAIN live USB is `/dev/sdb`, and the evidence drive is `/dev/sdc`.
+ The computer I'll be investigating for this lab is my laptop, which has a 256GB SSD with Ubuntu 16.04 installed. So, the first thing to do was prepare my evidence drive, which is a 500GB hard disk, large enough to fit an image of my laptop's entire drive. The drive on my laptop is `/dev/sda`, the CAIN live USB is `/dev/sdb`, and the evidence drive is `/dev/sdc`.
 
  ![disks](./images/list_disks.png)
  **Figure 1:** Output of disks on machine.
@@ -31,14 +31,14 @@ In preparation for this Lab I've installed [CAIN 10.0](https://www.caine-live.ne
 ### Creating an Image  
 
 After the evidence drive was ready I mounted it at `/mnt/sdc1`, created a new directory called `case1` and generated a pre-image hash of my laptop's drive.
-![mount_and_hash](./images/mount-and-hash.png)
+![mount_and_hash](./images/mount_hash.png)
 **Figure 5:** Mounting evidence drive and generating hash of target drive into case directory.
 
 Next I created an image of my laptop's drive, which was also saved into the `case1` directory.
 ![create_image](./images/create-image.png)
 **Figure 6:** Creating an image of the laptop's disk, placing it in `case1` directory.
 
-Once the image of the disk was completed, I verified the integrity by comparing the md5 pre and post image hashes.    
+Once the image of the disk was completed, I verified the integrity by comparing the md5 pre and post image hashes.      
 ![verify_hash](./images/verify-hash.png)
 **Figure 7:** Integrity if image verified using md5.
 
@@ -66,11 +66,30 @@ When the image is being analyzed we can see that it's going to be an encrypted f
 ![add_image_three.png](./images/add_image_three.png)
 **Figure 12:** Encrypted file system on `image.dd`.
 
-Now at this point I ran into a big issue. There was almost no useful information apparent.
+Now at this point I ran into a big issue. There was almost no useful information apparent. We need to decrypt the image, see below.
 
-### Mounting and Decrypting the Disk Image
+### Mounting and Decrypting the Disk Image  
+In order to decrypt the disk image we first mount it under `/mnt/sda1`.
+![mount_image](./images/mount_image.png)
+**Figure 13:** Mount `image.dd` to `/mnt/sda1`
 
+Once the was mounted we're able to navigate it as though it's another disk on the system. I navigated to the encrypted home directory to begin the decryption process.
+![oh_no_encrypted](./images/oh_no_encrypted.png)
+**Figure 14:** Encrypted directory.
 
+**Note:** If I did not have my own 32 character decryption key the rest of this lab would end here, and there would be no way to analyze anything. This is the point at which police typically need to forcibly get the key out of the suspect (beat them, threaten them, whatever).
+
+![decrypt_fs](./images/decrypt_fs.png)
+**Figure 15:** File system decryption using key.
+
+After this step my home folder was mounted to `/tmp/ecryptfs.gVp3gNa0`. This was then added as a new Data Source to Autopsy for analysis.  
+![add_decrypted_directory](./imgages/add_decrypted_directory.png)
+**Figure 16:** Adding the decrypted directory to as the new data source.
+
+![decrypted_directory_parsing](./images/decrypted_directory_parsing.png)
+**Figure 17:** Autopsy going through the decrypted files for analysis, `.gradle` directory being parsed in image.
+
+After this ran for a few hours (more like 9 or 10) it finished. Below are the results.
 
 ## Investigation Results  
 With my setup, some of these bullet points are simply not possible to determine.
@@ -78,19 +97,19 @@ With my setup, some of these bullet points are simply not possible to determine.
 1. Provide screenshots of the following information
 
     * Number and type of documents (Word, Power Point, Excel, etc).
-      * The total number of documents is **957**. This was determined by opening up the file tree, and selecting the "Documents" option. As you can see in figure 8 the breakdown goes 190 HTML documents, 124 office documents, 211 PDFs, 426 plain text files, and 6 rich text files.  
+      * The total number of documents is **957**. This was determined by opening up the file tree, and selecting the "Documents" option. As you can see in figure 18 the breakdown goes 190 HTML documents, 124 office documents, 211 PDFs, 426 plain text files, and 6 rich text files.  
       ![documents](./images/documents.png)
-      **Figure XXX:** Total number of documents found.
+      **Figure 18:** Total number of documents found.
 
     * Number of images.
-      * The total number of images on my hard drive was **12,597**. This was determined by opening up the file tree, and selecting the "Images" option. See figure 9 below.
+      * The total number of images on my hard drive was **12,597**. This was determined by opening up the file tree, and selecting the "Images" option. See figure 19 below.
       ![images](./images/image.png)
-      **Figure XXX:** Total number of images found.
+      **Figure 19:** Total number of images found.
 
     * Number and types of encrypted files.
       * Autopsy only detected **12** encrypted files on my machine, which I know as a fact is wrong. These are PDF's for CTF writeups that I've password protected using *PDFtk*. It considered my *TrueCrypt* container to me "suspected as encrypted", which is funny. It also totally missed my KeePassX database.  
       ![encrypted_12_P1](./images/encrypted_12_P1.png)
-      **Figure XXX:** Autopsy only found my password protected PDFs, not all the encrypted files :)
+      **Figure 20:** Autopsy only found my password protected PDFs, not all the encrypted files :)
 
     * Number of executable files.
 
@@ -109,6 +128,7 @@ With my setup, some of these bullet points are simply not possible to determine.
       * This cannot be determined for the same reason as stated above.
 
     * Top 20 websites visited.
+      * I was fairly certain this would yield nothing, and it didn't. I only use FireFox in private mode, no cookies or history stored. Although Autopsy analyzed my `~/.mozilla/firefox` directory, it was unable to find any websites visited, or settings stored. Again, I've never stored this information because I was already very aware people could analyze it if my computer is ever stolen.
 
     * Types of external devices (eg. USB, printer, etc.) connected to the computer
       * This was not possible to determine. I don't know if Autopsy offers it as a feature, especially given that this wasn't a live acquisition. There was nothing to report in the category of external devices.
@@ -117,12 +137,12 @@ With my setup, some of these bullet points are simply not possible to determine.
 
 
 3. Do a search to determine the number of times CSUS or Sac State appeared and typical places where it appeared.
-      * The phrase `CSUS` appeared 15 times. It appeared in my working assignment directory for CSC153 and CSC154, exactly where I'd have expected to find that keyword (see figure XXX).
+      * The phrase `CSUS` appeared 15 times. It appeared in my working assignment directory for CSC153 and CSC154, exactly where I'd have expected to find that keyword (see figure 21).
       ![csus_search](./images/csus_search.png)
-      **Figure XXX:** The phrase CSUS, appears 15 places.
+      **Figure 21:** The phrase CSUS, appears 15 places.
 
 4. Any surprising information you least expected to find.
     * I'm a bit surprised Autopsy didn't detect my KeePassX database as an encrypted file, and only considered my TrueCrypt container to be "Suspected" as an encrypted file. The number of images was higher than I anticipated too. What surprised me more was how much file system encryption actually protects you from this type of analysis. Even knowing my own encryption key didn't make this process as easy as it would have been had the drive not been encrypted at all.
 
 ## Conclusion  
-Encryption sure does keep you safe from prying eyes, but if you take a forensics class that tells you to analyze your own drive then your at war with yourself. I could have installed Windows and created dummy data for this Lab, and at a certain point I really considered it. However, I'd come so far in the process of actually doing this exercise on my real machine that I did not want to throw all that work away and turn in a boring lab report.
+Encryption sure does keep you safe from prying eyes, but if you take a forensics class that tells you to analyze your own drive then your at war with yourself. I could have installed Windows and created dummy data for this Lab, and at a certain point I really considered it. However, I'd come so far in the process of actually doing this exercise on my real machine that I did not want to throw all that work away and turn in a boring lab report. I learned **a lot** doing this lab, and I think that was the whole point.
