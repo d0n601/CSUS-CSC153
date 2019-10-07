@@ -108,11 +108,14 @@ With my setup, some of these bullet points are simply not possible to determine.
       **Figure 19:** Autopsy only found my password protected PDFs, not all the encrypted files :)
 
     * Number of executable files.
+      * There were **884** executable files. Most of these are Windows files. I'd assume this is because it scanned Wine, or my Virtual Machines? It's breaking it down by file extension and Linux executables mostly have no extension, perhaps that's another reason?
+      ![executables](./images/executables.png)
+      **Figure 21:** Only 3 deleted files were found?  
 
-    * Number of deleted files.
+    * Number of deleted files.  
       * Autopsy only detected 3 deleted files. I'm not sure if this is because of the SSD, or due to encryption, or some flaw in the Autopsy scan. This number seems low.  
       ![deleted](./images/deleted.png)
-      **Figure 20:** Only 3 deleted files were found?
+      **Figure 22:** Only 3 deleted files were found?
 
     * Number of files in slack space
       * This cannot be determined. In order to analyze the encrypted home directory we must first decrypt it, and then add it as a "Logical File" source. According to Autopsy's documentation logical file sources cannot find files in unallocated space, see quote and reference below.  
@@ -132,14 +135,14 @@ With my setup, some of these bullet points are simply not possible to determine.
 2. Do a search to determine the number of times your name, and typical places your name appeared.
     * My name appears 485 places. Typically this is in files for school assignments (paper, source code etc). Most of them are from my NextCloud folder or directly from my documents.  
     ![ryankozak](./images/ryankozak.png)
-    **Figure 20:** Number of times my name appears.
+    **Figure 23:** Number of times my name appears.
 
 
 
 3. Do a search to determine the number of times CSUS or Sac State appeared and typical places where it appeared.
-      * The phrase `CSUS` appeared 15 times. It appeared in my working assignment directory for CSC153 and CSC154, exactly where I'd have expected to find that keyword (see figure 22).
+      * The phrase `CSUS` appeared 15 times. It appeared in my working assignment directory for CSC153 and CSC154, exactly where I'd have expected to find that keyword (see figure 24).
       ![csus_search](./images/csus_search.png)
-      **Figure 22:** The phrase CSUS, appears 15 places.
+      **Figure 24:** The phrase CSUS, appears 15 places.
 
 4. Any surprising information you least expected to find.
     * I'm a bit surprised Autopsy didn't detect my KeePassX database as an encrypted file, and only considered my TrueCrypt container to be "Suspected" as an encrypted file. The number of images was higher than I anticipated too. What surprised me more was how much file system encryption actually protects you from this type of analysis. Even knowing my own encryption key didn't make this process as easy as it would have been had the drive not been encrypted at all.
