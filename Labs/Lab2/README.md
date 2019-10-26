@@ -4,7 +4,7 @@
 
 ## Objectives
 * Perform Data Acquisition using FTK imager and Linux dd, dcfldd commands.
-* Learn to use Windows the version Autopsy.
+* Learn to use the Windows version Autopsy (version 4).
 * Locate deleted/hidden files.
 * Perform a dirty word search.
 * Create a case report with any evidence you find.
@@ -25,7 +25,7 @@ Autopsy 4.13 was downloaded from **[here](https://www.sleuthkit.org/autopsy/down
 **Figure 2:** Installation of Autopsy.
 
 
-The lab states *"Install a CAINE or Kali Linux virtual machine following the instructions of our in-class activity 1. You may skip this step if you decide to use the lab machines in RVR2009 to perform the steps involving Linux."*. Because I completed activy 1 on my home machine, between the first and second class periods we were allowed to work on it, a CAIN 9 virtual machine was ready to go for me before beginning this lab.  
+The lab states *"Install a CAINE or Kali Linux virtual machine following the instructions of our in-class activity 1. You may skip this step if you decide to use the lab machines in RVR2009 to perform the steps involving Linux."*. Because I completed activity 1 on my home machine, between the first and second class periods we were allowed to work on it, a CAIN 9 virtual machine was ready to go for me before beginning this lab.  
 ![CaineVM_VB](./images/CaineVM_VB.png)  
 **Figure 3:** CAIN 9 ready to go on Virtual Box.  
 
@@ -56,29 +56,87 @@ and then click Finish.
 
 In the Create Image dialog box, we select *“Verify images after they are created”*, and then click *“Add”*. Then, we select *“Raw”* as the Destination Image Type.  
 ![ftk_raw_dd](./images/ftk_raw_dd.png)  
-**Figure 6:** Raw data selected as destination image type on FTK Imager.  
+**Figure 6:** Raw data selected as destination image type on FTK Imager.
 
 Complete the case information, and then click Next.  
+![FTK_Notes](./images/FTK_Notes.png)
+**Figure 7:** Completing evidence item information. 
 
-12. In the Select Image Destination dialog box, click Browse and specify the location you want to
-store the image. Type in the Image Filename. Click to clear the Use AD Encryption check box.
-Then click on Finish.  
+Next we click to the Select Image Destination dialog box, click Browse and specify the location we're storing the image. Also, we lick to clear the Use AD Encryption check box.
+![FTK_save.png](./images/FTK_save.png)  
+**Figure 8:** Selecting where to store the image file.
 
-13. Click start to initiate the acquisition.  
+It's now time we start to initiate the acquisition.  
 
-14. Review the information in the Drive/Image Verify Results dialog box, and then click Close. Close
-again in the Creating Image dialog box.  
+![FTK_added_start](./images/FTK_added_start.png) 
+**Figure 8:** Ready to start the image creation.  
 
+![FTK_imaging_process](./images/FTK_imaging_process.png)  
+**Figure 9:** FTK creating the image.  
+
+
+Lastly, we review the information in the Drive/Image Verify Results dialog box.  
+![FTK_image_summary](./images/FTK_image_summary.png)  
+**Figure 10:** Image Summary.  
 
 
 ### Task 4: Perform a data acquisition with Linux dd/dcfldd command.  
+Next we open up the CAINE 9 virtual machine, and follow the instructions of in-class activity 3 to
+perform data acquisition of the USB drive using Linux dd/dcfldd commands. 
+
+The first step in activity 3 was to locate and then zero the drive on which we're to copy our evidence. I've included this part because it was part of activity 3.  
+
+![drives_on_caine](./images/drives_on_caine.png)  
+**Figure 11:** `/dev/sdb1` is our evidence drive, `/dev/sdc1` is our target.
+
+![zero_target_drive](./images/zero_target_drive.png)  
+**Figure 12:** Zero out the target drive before acquisition.
+
+Next we create a partition, and a file system on the target drive.
+
+![0_target_new_partition](./images/0_target_new_partition.png)  
+**Figure 13:** Creating a partition on `/dev/sdc`.
+
+![1_target_write_fat_32](./images/1_target_write_fat_32.png)  
+**Figure 14:** Write W95 FAT 32 (LBA) .
+
+![2_target_make_filesystem](./images/2_target_make_filesystem.png)  
+**Figure 15:** Make FAT 32 file system on the new partition.  
+
+At this point, we're ready to mount the evidence drive to store a copy of our evidence, and evidence hashes.  
+![3_target_mount_filesystem](./images/3_target_mount_filesystem.png)  
+**Figure 16:** Mounting our evidence drive.
+
+Once our target drive is mounted, we create a `case1` directory, and acquire the data.  
+![aquire_data](./images/aquire_data.png)  
+**Figure 17:** Acquisition of data to `case1` directory with `dcfldd`.
+
+After acquisition is complete we verify the image by checking the the values of the `pre-imagesource.md5.txt` and `post-imagesource.md5.txt` contain the same hash value.  
+![verified_hashes.png](./images/verified_hashes.png)  
+**Figure 18:**  Verified acquisition by checking `md5sum` results.
+
+Now there is an `image1.dd` file created from our evidence drive. It's time to analyze this in Autopsy, so we transfer the evidence drive to our Windows virtual machine.
 
 
 ### Task 5: Analyze the acquired data.  
 
+We open Autopsy in our Windows VM that we installed in Task 1. 
 
-15. Open the CAINE or Kali Linux virtual machine, follow the instructions of in-class activity 3 to
-perform data acquisition of the USB drive using Linux dd/dcfldd commands.
+17. Create a new case and add the image by choosing Disk Image or VM File.
+
+18. Choose the raw image you acquired in step 15.
+
+19. Select all, and click on Next.
+
+20. Click on Finish.
+
+21. Click on Data Sources to view the image.
+
+22. Click on the tabs under “Views” to check the files on this USB drive.
+
+23. Click on deleted files to see the deleted files.
+
+24. You may check the content for each file by clicking on that file. You can also download a file by right-click on the file, choose “Extract file”, and then save it to a directory. You can then try toview the file on your machine. For example, I tried to open the “where were you.mp3” file in my machine, but found I cannot open it.
 
 ### Task 6: Perform a dirty word search.
 
