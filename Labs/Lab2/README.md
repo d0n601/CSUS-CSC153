@@ -15,7 +15,7 @@
 ### Task 1: Software Preparation.
 The first task is to get our forensic tools downloaded and installed. FTK Imager and Autopsy 4 are to be installed on Windows and CAINE 9 is installed as a virtual machine. For this lab I'll be using an Ubuntu 18 host, running Virtual Box with virtual machines for Windows 10 and CAIN 9.
 
-FTK Imager 4.2.1 was downloaded from **[here](https://accessdata.com/product-download/ftk-imager-version-4.2.1)** onto the Windows 10 virtual machine, and installed. 
+FTK Imager 4.2.1 was downloaded from **[here](https://accessdata.com/product-download/ftk-imager-version-4.2.1)** onto the Windows 10 virtual machine, and installed.
 
 ![1_SOFTWARE_PREPERATION](./images/1_SOFTWARE_PREPERATION.png)
 **Figure 1:** Installation of FTK Imager.
@@ -60,7 +60,7 @@ In the Create Image dialog box, we select *“Verify images after they are creat
 
 Complete the case information, and then click Next.  
 ![FTK_Notes](./images/FTK_Notes.png)
-**Figure 7:** Completing evidence item information. 
+**Figure 7:** Completing evidence item information.
 
 Next we click to the Select Image Destination dialog box, click Browse and specify the location we're storing the image. Also, we lick to clear the Use AD Encryption check box.
 ![FTK_save.png](./images/FTK_save.png)  
@@ -68,7 +68,7 @@ Next we click to the Select Image Destination dialog box, click Browse and speci
 
 It's now time we start to initiate the acquisition.  
 
-![FTK_added_start](./images/FTK_added_start.png) 
+![FTK_added_start](./images/FTK_added_start.png)
 **Figure 8:** Ready to start the image creation.  
 
 ![FTK_imaging_process](./images/FTK_imaging_process.png)  
@@ -82,7 +82,7 @@ Lastly, we review the information in the Drive/Image Verify Results dialog box.
 
 ### Task 4: Perform a data acquisition with Linux dd/dcfldd command.  
 Next we open up the CAINE 9 virtual machine, and follow the instructions of in-class activity 3 to
-perform data acquisition of the USB drive using Linux dd/dcfldd commands. 
+perform data acquisition of the USB drive using Linux dd/dcfldd commands.
 
 The first step in activity 3 was to locate and then zero the drive on which we're to copy our evidence. I've included this part because it was part of activity 3.  
 
@@ -103,9 +103,9 @@ Next we create a partition, and a file system on the target drive.
 ![2_target_make_filesystem](./images/2_target_make_filesystem.png)  
 **Figure 15:** Make FAT 32 file system on the new partition.  
 
-At this point, we're ready to mount the evidence drive to store a copy of our evidence, and evidence hashes.  
+At this point, we're ready to mount the to store a copy of our evidence, and evidence hashes.  
 ![3_target_mount_filesystem](./images/3_target_mount_filesystem.png)  
-**Figure 16:** Mounting our evidence drive.
+**Figure 16:** Mounting drive to copy our evidence to.
 
 Once our target drive is mounted, we create a `case1` directory, and acquire the data.  
 ![aquire_data](./images/aquire_data.png)  
@@ -148,11 +148,11 @@ We can examine this deleted file `f0248704.docx` by right-clicking on the file, 
 
 When we open `f0248704.docx` in Microsoft Word, we see that the contents are that or our `test.docx` file. The file was deleted by the disk formatting performed in Task 2, but we've recovered it.  
 ![file_extracted_doc_opened](./images/file_extracted_doc_opened.png)  
-**Figure 25:** Contents of the deleted file match `test.docx`. 
+**Figure 25:** Contents of the deleted file match `test.docx`.
 
 ### Task 6: Perform a dirty word search.
 
-For the purposes of this lab we will just use *Warranties* as the key word for our dirty word search, as we're aware that this word is in our deleted file. 
+For the purposes of this lab we will just use *Warranties* as the key word for our dirty word search, as we're aware that this word is in our deleted file.
 
 We click on the “Keyword Search” button, ensure ASCII, and Case Insensitive are selected, and type in *Warranties*.
 
@@ -165,15 +165,15 @@ in the file reports you made during the file analysis.**
 
 ### Task 7: Zero-out the suspect USB drive.
 
-Now we are going to zero-out the suspect USB drive. First we connect the same suspect USB drive back up to our CAIN virtual machine. In our case it's at `/dev/sdb`.
-
-**Then, we zero-out the drive**.
+Now we are going to zero-out the suspect USB drive. First we connect the same suspect USB drive back up to our CAIN virtual machine. In our case it's at `/dev/sdb`. **Then, we zero-out the drive**.  
 ![task_8_zero](./images/task_8_zero.png)  
 **Figure 27:** Zero-out the suspect drive.
 
-### Task 8. Repeat Task 4-6.
+### Task 8: Repeat Tasks 4-6.
 
-30. Repeat the activities 4-6 towards the zeroed-out USB drive.
+We now begin to repeat the activities 4-6 towards the zeroed-out USB drive. For activity 4, we do not need to zero out the drive on which we store evidence, or create a case directory. That part was to ensure a safe place to store evidence, and it still is.  
+
+So, at this point we create a `pre-imagesource_zerod.md5.txt`
 
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
@@ -181,6 +181,9 @@ Now we are going to zero-out the suspect USB drive. First we connect the same su
 1. **In Task 4, the acquired image has an extension of “.dd”. In Task 3, what is the extension for the
 image file?**
 
+  FTK uses an extension of `.001`. We can discover this by looking at the output of FTK Imager, and seeing the file we created is `usbBill.001`.  
+  ![task_3_extension](./images/task_3_extension.png)  
+  **Figure 28:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
 
 2. **In Task 5, how many files are there on the USB drive? What are they? Please attach screenshots
 to prove your answer.**
@@ -196,6 +199,7 @@ to prove your answer.**
 6. **In Task 2, you performed a “disk format” operation towards the USB drive. Did this operation
 completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
 provide a screenshot to prove your answer.**  
+
 
 7. **In Task 7, you performed a “zero out” operation towards the USB drive. Did this operation
 completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
