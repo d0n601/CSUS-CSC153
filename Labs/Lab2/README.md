@@ -173,7 +173,14 @@ Now we are going to zero-out the suspect USB drive. First we connect the same su
 
 We now begin to repeat the activities 4-6 towards the zeroed-out USB drive. For activity 4, we do not need to zero out the drive on which we store evidence, or create a case directory. That part was to ensure a safe place to store evidence, and it still is.  
 
-So, at this point we create a `pre-imagesource_zerod.md5.txt`
+So, at this point we acquire an image of the drive again using `dcfldd` and compare the hashes once more to confirm integrity.  
+![acquire_zerod.png](./images/acquire_zerod.png)  
+**Figure 28:** Acquiring `image1_zerod.dd` of suspect drive after zero-out.  
+
+![hash_match_zerod](./images/hash_match_zerod.png)  
+**Figure 29:** Verify `image1)zerod.dd` with previously calculated hash of the zeroed drive.
+
+
 
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
@@ -187,8 +194,12 @@ image file?**
 
 2. **In Task 5, how many files are there on the USB drive? What are they? Please attach screenshots
 to prove your answer.**
+   Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.  
+   ![no_files](./images/no_files.png)  
+   **Figure 29:** There are no files that aren't deleted existing on the drive.
 
 3. **In Task 5, which file/files are deleted? Please attach screenshots to prove your answer.**  
+   Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.
 
 4. **In Task 6, are you able to find any hit when you search “Warranties” as the key word? In which
 file is the key word located? Please attach screenshots to prove your answer.**  
@@ -207,6 +218,7 @@ provide a screenshot to prove your answer.**
 
 8. **Did have any surprise in Task 5? Did you see any other files other than “test.doc” or “test.docx”?
 Please provide a screenshot to prove your answer.**  
+
 
 9. **In Task 8, did you see any other files other than “test.doc” or “test.docx”? Please provide a
 screenshot to prove your answer.**  
