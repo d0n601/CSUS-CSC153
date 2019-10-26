@@ -120,45 +120,56 @@ Now there is an `image1.dd` file created from our evidence drive. It's time to a
 
 ### Task 5: Analyze the acquired data.  
 
-We open Autopsy in our Windows VM that we installed in Task 1. 
+We open Autopsy in our Windows VM that we installed in Task 1, and create a new case.
 
-17. Create a new case and add the image by choosing Disk Image or VM File.
+![new_autopsy_case](./image/new_autopsy_case.png)  
+**Figure 21:** Creating Lab2 case in Autopsy.  
 
-18. Choose the raw image you acquired in step 15.
+Next, we add the image by choosing Disk Image or VM File.
 
-19. Select all, and click on Next.
+![autopsy_disk_image_file](./images/autopsy_disk_image_file.png)  
+**Figure 20:** Select to add a disk image file.
 
-20. Click on Finish.
+For our data source, we select the raw image acquired via `dcfldd`.
+![autopsy_source](./images/autopsy_source.png)  
+**Figure 21:** Data source is image `image1.dd`.  
 
-21. Click on Data Sources to view the image.
+![autopsy_all_stuff](./images/autopsy_all_stuff.png)  
+**Figure 22:** All modules configured.
 
-22. Click on the tabs under “Views” to check the files on this USB drive.
+We click on *Data Sources* to view the image. Next we navigate to the tabs under *Views* to check the files on this USB drive. Because I've been using this drive for CSC 153 already, it's been zeroed a couple of times previously. The only file on this drive is the file we've placed on here in Task 2, `test.docx`.  However, that appears as a deleted file, due to our formatting of the drive in Task 2 directly after creating the file. So, we click on deleted files to see the deleted files.
 
-23. Click on deleted files to see the deleted files.
+![all_files](./image/all_files.png)  
+**Figure 23:** There is one deleted `.docx` file, and `mft` records, nothing more.
 
-24. You may check the content for each file by clicking on that file. You can also download a file by right-click on the file, choose “Extract file”, and then save it to a directory. You can then try toview the file on your machine. For example, I tried to open the “where were you.mp3” file in my machine, but found I cannot open it.
+We can examine this deleted file `f0248704.docx` by right-clicking on the file, choosing *Extract file*.
+![file_extracted_doc](./images/file_extracted_doc.png)  
+**Figure 24:** Extracted deleted `.docx` file.
+
+When we open `f0248704.docx` in Microsoft Word, we see that the contents are that or our `test.docx` file. The file was deleted by the disk formatting performed in Task 2, but we've recovered it.  
+![file_extracted_doc_opened](./images/file_extracted_doc_opened.png)  
+**Figure 25:** Contents of the deleted file match `test.docx`. 
 
 ### Task 6: Perform a dirty word search.
 
-25. A dirty word search is a search through all of the bytes in the image looking for specific strings or
-words. Look at the information listed in the case summary, and consider what words a suspect
-might use. This search takes some time. Normally a forensic analyst would have a long list of
-dirty words ready. For demonstration, in this lab just use the “Warranties” as the key word.
+For the purposes of this lab we will just use *Warranties* as the key word for our dirty word search, as we're aware that this word is in our deleted file. 
 
-26. Click on the “Keyword Search” button.
+We click on the “Keyword Search” button, ensure ASCII, and Case Insensitive are selected, and type in *Warranties*.
 
-27. Ensure ASCII, and Case Insensitive are selected. Type in a dirty word from your list. Click the
-“Search” button.
+![warranties_search](./images/warranties_search.png)  
+**Figure 26:** Keyword (dirty word) search results for *Warranties*.
 
-28. When you get a hit, make a note of the sector the hit was in. You will be able to determine what
+**When you get a hit, make a note of the sector the hit was in. You will be able to determine what
 file the hit was located in by comparing the sector the word was found in with the sectors listed
-in the file reports you made during the file analysis.
+in the file reports you made during the file analysis.**
 
 ### Task 7: Zero-out the suspect USB drive.
 
-29. Connect the same suspect USB drive you used in this lab to the CAINE/Kali Linux again. Zero-out
-the suspect drive by following the instructions in our In-class Activity 3. This step is very
-important. Please don’t skip this step.
+Now we are going to zero-out the suspect USB drive. First we connect the same suspect USB drive back up to our CAIN virtual machine. In our case it's at `/dev/sdb`.
+
+**Then, we zero-out the drive**.
+![task_8_zero](./images/task_8_zero.png)  
+**Figure 27:** Zero-out the suspect drive.
 
 ### Task 8. Repeat Task 4-6.
 
@@ -167,33 +178,34 @@ important. Please don’t skip this step.
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
 
-1. In Task 4, the acquired image has an extension of “.dd”. In Task 3, what is the extension for the
-image file?
+1. **In Task 4, the acquired image has an extension of “.dd”. In Task 3, what is the extension for the
+image file?**
 
-2. In Task 5, how many files are there on the USB drive? What are they? Please attach screenshots
-to prove your answer.
 
-3. In Task 5, which file/files are deleted? Please attach screenshots to prove your answer.  
+2. **In Task 5, how many files are there on the USB drive? What are they? Please attach screenshots
+to prove your answer.**
 
-4. In Task 6, are you able to find any hit when you search “Warranties” as the key word? In which
-file is the key word located? Please attach screenshots to prove your answer.  
+3. **In Task 5, which file/files are deleted? Please attach screenshots to prove your answer.**  
 
-5. In Task 8, how many files are there on the USB drive? What are they? Please attach screenshots
-to prove your answer.  
+4. **In Task 6, are you able to find any hit when you search “Warranties” as the key word? In which
+file is the key word located? Please attach screenshots to prove your answer.**  
 
-6. In Task 2, you performed a “disk format” operation towards the USB drive. Did this operation
+5. **In Task 8, how many files are there on the USB drive? What are they? Please attach screenshots
+to prove your answer.**  
+
+6. **In Task 2, you performed a “disk format” operation towards the USB drive. Did this operation
 completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
-provide a screenshot to prove your answer.  
+provide a screenshot to prove your answer.**  
 
-7. In Task 7, you performed a “zero out” operation towards the USB drive. Did this operation
+7. **In Task 7, you performed a “zero out” operation towards the USB drive. Did this operation
 completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
-provide a screenshot to prove your answer.  
+provide a screenshot to prove your answer.**  
 
-8. Did have any surprise in Task 5? Did you see any other files other than “test.doc” or “test.docx”?
-Please provide a screenshot to prove your answer.  
+8. **Did have any surprise in Task 5? Did you see any other files other than “test.doc” or “test.docx”?
+Please provide a screenshot to prove your answer.**  
 
-9. In Task 8, did you see any other files other than “test.doc” or “test.docx”? Please provide a
-screenshot to prove your answer.  
+9. **In Task 8, did you see any other files other than “test.doc” or “test.docx”? Please provide a
+screenshot to prove your answer.**  
 
-10. To summarize the questions above, what are the difference between disk formatting in
-Windows and the zero-out operation?  
+10. **To summarize the questions above, what are the difference between disk formatting in
+Windows and the zero-out operation?**  
