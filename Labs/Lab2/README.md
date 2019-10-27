@@ -194,8 +194,10 @@ This time there is a problem.
 **Figure 35:** Autopsy cannot determine file system type.
 
 
-Autopsy cannot detemine the file system type because we've destroyed the file system by running a `dd if=/dev/zero of=/dev/sdb`. That command writes zero to every bit on the drive, so there are no partitions or file systems to examine. Just to be sure I repeated this step twice, both times achieving the same result.
+Autopsy cannot detemine the file system type because we've destroyed the file system by running a `dd if=/dev/zero of=/dev/sdb`. That command writes zero to every bit on the drive, so there are no partitions or file systems to examine. Just to be sure I repeated this step twice, both times achieving the same result. 
 
+
+https://sleuthkit.discourse.group/t/issues-adding-source-data-failed-to-add-data-source-drive-with-no-fs/235
 
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
