@@ -31,10 +31,10 @@ The lab states *"Install a CAINE or Kali Linux virtual machine following the ins
 
 
 ### Task 2: Prepare a suspect drive.  
-The second task was to find a USB drive with the size of 500MB-2GB to work as the suspect drive. For this lab I'll be using a 1GB flash drive purchased on Amazon, brand unknown. **Note:** I have zeroed out this drive a few times already for this class.
+The second task was to find a USB drive with the size of 500MB-2GB to work as the suspect drive. For this lab I'll be using a 1GB flash drive. **Note:** I have zeroed out this drive a few times already for this class, and just installed the file system prior to this lab.
 
-The drive was connected to the Windows virtual machine, and a file named `test.docx` was created via Microsoft Word. The contents of this file were the following.  
-> Life does not provide Warranties and Guarantees it only provides possibilities and opportunities for those who there to make best use of it!  
+We first connect the drive to the Windows virtual machine, and a file named `test.docx` is created via Microsoft Word. The  contents of this file are the following.  
+> Life does not provide Warranties and Guarantees it only provides possibilities and opportunities for those who there to make best use of it!. 
 
 ![test_doc](./images/test_doc.png)  
 **Figure 3:** Creating `test.docx` on the Windows machine.
@@ -62,7 +62,7 @@ Complete the case information, and then click Next.
 ![FTK_Notes](./images/FTK_Notes.png)
 **Figure 7:** Completing evidence item information.
 
-Next we click to the Select Image Destination dialog box, click Browse and specify the location we're storing the image. Also, we lick to clear the Use AD Encryption check box.
+Next we click to the Select Image Destination dialog box, click Browse and specify the location we're storing the image. Also, we click to clear the Use AD Encryption check box.
 ![FTK_save.png](./images/FTK_save.png)  
 **Figure 8:** Selecting where to store the image file.
 
@@ -71,7 +71,7 @@ It's now time we start to initiate the acquisition.
 ![FTK_added_start](./images/FTK_added_start.png)
 **Figure 8:** Ready to start the image creation.  
 
-![FTK_imaging_process](./images/FTK_imaging_process.png)  
+![FTK_imaging_process](./images/FTK_imaging_progress.png.png)  
 **Figure 9:** FTK creating the image.  
 
 
@@ -122,7 +122,7 @@ Now there is an `image1.dd` file created from our evidence drive. It's time to a
 
 We open Autopsy in our Windows VM that we installed in Task 1, and create a new case.
 
-![new_autopsy_case](./image/new_autopsy_case.png)  
+![new_autopsy_case](./images/new_autopsy_case.png)  
 **Figure 21:** Creating Lab2 case in Autopsy.  
 
 Next, we add the image by choosing Disk Image or VM File.
