@@ -185,26 +185,26 @@ So, at this point we acquire an image of the drive again using `dcfldd` and comp
 Now `image1_zerod.dd` contains an image of the drive after we've run our zero-out. We begin to repeat Task 5 by opening up the Windows virtual machine once more, and then opening Autopsy. We then create a case and add `image1_zerod.dd` as a raw image.  
 
 ![add_zerod_source](./images/add_zerod_source.png)  
-**Figure 34:** Adding raw image file of zeroed out suspect drive.
+**Figure 33:** Adding raw image file of zeroed out suspect drive.
 
 
 We must add the image as an "Unallocated Space Image File" this time, as there is no file system on the disk.
 
 ![add_unallocated_space_image_file.png](./images/add_unallocated_space_image_file.png)  
-**Figure 35:** Select *Unallocated Space Image File* this time.
+**Figure 34:** Select *Unallocated Space Image File* this time.
 
 Now we can select `image1_zerod.dd` and it will work.  
 
 ![666add_0dd](./images/666add_0dd.png)  
-**Figure 36:** Selecting the zeroed-out image file for analysis.
+**Figure 35:** Selecting the zeroed-out image file for analysis.
 
 Even after expanding the entire tree we see that there are no files on the disk, not even any deleted files.  
 ![all_files_zerod](./images/all_files_zerod.png)  
-**Figure 37:** There aren't any files on the drive now, nor deleted files.  
+**Figure 36:** There aren't any files on the drive now, nor deleted files.  
 
 When we run our dirty word search once again, for the word *Warranties*, but nothing is found. There are no files on the drive, I didn't expect it would find anything.  
 ![zerod_search_fail](./images/zerod_search_fail.png)  
-**Figure 38:** Nothing found in second dirty word search.  
+**Figure 37:** Nothing found in second dirty word search.  
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
 
@@ -212,35 +212,35 @@ When we run our dirty word search once again, for the word *Warranties*, but not
 image file?**  
   FTK uses an extension of `.001`. We can discover this by looking at the output of FTK Imager, and seeing the file we created is `usbBill.001`.  
   ![task_3_extension](./images/task_3_extension.png)  
-  **Figure 39:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
+  **Figure 38:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
 
 2. **In Task 5, how many files are there on the USB drive? What are they?**    
 	* Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.  
    ![no_files](./images/no_files.png)  
-   **Figure 40:** There are no files that aren't deleted existing on the drive.
+   **Figure 39:** There are no files that aren't deleted existing on the drive.
 
 3. **In Task 5, which file/files are deleted?**  
 	* As I stated in question 2, because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.   
 	![no_files](./images/no_files.png)  
-   **Figure 41:** Deleted files found on the drive.
+   **Figure 40:** Deleted files found on the drive.
 
 4. **In Task 6, are you able to find any hit when you search *Warranties* as the key word? In which
 file is the key word located?**  
 	* I was able to get a hit for *Warranties*. The file the word was located in was `f0248704.docx`, which was actually the remains of our `test.docx` we created before formatting the drive.
 	![sector](./images/sector.png)    
-	**Figure 42:** Search results for *Warranties*  
+	**Figure 41:** Search results for *Warranties*  
 
 5. **In Task 8, how many files are there on the USB drive? What are they?**  
 	* There are no files on the drive at all after we've zeroed it out.
 	![all_files_zerod](./images/all_files_zerod.png)  
-	**Figure 43:** No files exist on the drive after we've run a zero-out.
+	**Figure 42:** No files exist on the drive after we've run a zero-out.
 
 
 6. **In Task 2, you performed a “disk format” operation towards the USB drive. Did this operation
 completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know?**    
 	* No, it did not delete the file completely. The MFT records for the file were deleted, the file is still recoverable though after the formatting, as you can see in the figure below.
 	![file_extracted_doc_opened](./images/file_extracted_doc_opened.png)  
-	**Figure 44:** The contents of  `f0248704.docx`, containing *Warranties*.  
+	**Figure 43:** The contents of  `f0248704.docx`, containing *Warranties*.  
 
 
 7. **In Task 7, you performed a `zero out` operation towards the USB drive. Did this operation
@@ -248,18 +248,18 @@ completely erase the `test.doc` (or `test.docx`) file in the USB drive? How do y
 provide a screenshot to prove your answer.**  
 	* Yes, because there are no files on the drive at all after we've zeroed it out.
 	![all_files_zerod](./images/all_files_zerod.png)  
-	**Figure 45:** No  files exist on the drive after we've run a zero-out 
+	**Figure 44:** No  files exist on the drive after we've run a zero-out 
 
 8. **Did have any surprise in Task 5? Did you see any other files other than `test.doc` or `test.docx`?**   
 	* The only files on the drive were the deleted remains of `test.docx` and some deleted .`mft` files. This wasn't a surprise.  
 	![all_files](./images/all_files.png)  
-	**Figure 46:** We the only files on the drive are the 6 that were deleted.
+	**Figure 45:** We the only files on the drive are the 6 that were deleted.
 
 9. **In Task 8, did you see any other files other than `test.doc` or `test.docx`? Please provide a
 screenshot to prove your answer.** 
 	* No, there were no files on the disk.
 	![all_files_zerod](./images/all_files_zerod.png)  
-	**Figure 47:** No files exist on the drive after we run a zero-out 
+	**Figure 46:** No files exist on the drive after we run a zero-out 
 
 10. **To summarize the questions above, what is the difference between disk formatting in
 Windows and the zero-out operation?**  
