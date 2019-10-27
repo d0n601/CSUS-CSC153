@@ -139,7 +139,7 @@ For our data source, we select the raw image acquired via `dcfldd`.
 
 We click on *Data Sources* to view the image. Next we navigate to the tabs under *Views* to check the files on this USB drive. Because I've been using this drive for CSC 153 already, it's been zeroed a couple of times previously. The only file on this drive is the file we've placed on here in Task 2, `test.docx`.  However, that appears as a deleted file, due to our formatting of the drive in Task 2 directly after creating the file. So, we click on deleted files to see the deleted files.
 
-![all_files](./image/all_files.png)  
+![all_files](./images/all_files.png)  
 **Figure 25:** There is one deleted `.docx` file, and `mft` records, nothing more.
 
 We can examine this deleted file `f0248704.docx` by right-clicking on the file, choosing *Extract file*.
