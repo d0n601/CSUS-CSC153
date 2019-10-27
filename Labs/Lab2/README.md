@@ -215,13 +215,13 @@ image file?**
   **Figure 38:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
 
 2. **In Task 5, how many files are there on the USB drive? What are they?**    
-	* Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.  
-   ![no_files](./images/no_files.png)  
+	* Six if you count deleted files, otherwise zero. Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, there were ** and all these files were `.mft` files except for the single `.docx` we created in task 2.  
+   ![no_files](./images/all_files.png)  
    **Figure 39:** There are no files that aren't deleted existing on the drive.
 
 3. **In Task 5, which file/files are deleted?**  
 	* As I stated in question 2, because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.   
-	![no_files](./images/no_files.png)  
+	![no_files](./images/all_files.png)  
    **Figure 40:** Deleted files found on the drive.
 
 4. **In Task 6, are you able to find any hit when you search *Warranties* as the key word? In which
