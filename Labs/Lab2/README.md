@@ -157,17 +157,18 @@ For the purposes of this lab we will just use *Warranties* as the key word for o
 We click on the “Keyword Search” button, ensure ASCII, and Case Insensitive are selected, and type in *Warranties*.
 
 ![warranties_search](./images/warranties_search.png)  
-**Figure 28:** Keyword (dirty word) search results for *Warranties*.
+**Figure 28:** Keyword (dirty word) search results for *Warranties*.  
 
-**When you get a hit, make a note of the sector the hit was in. You will be able to determine what
-file the hit was located in by comparing the sector the word was found in with the sectors listed
-in the file reports you made during the file analysis.**
+
+![sector](./images/sector.png)  
+**Figure 29:** Hit and file information from our dirty word search.  
+
 
 ### Task 7: Zero-out the suspect USB drive.
 
 Now we are going to zero-out the suspect USB drive. First we connect the same suspect USB drive back up to our CAIN virtual machine. In our case it's at `/dev/sdb`. **Then, we zero-out the drive**.  
 ![task_8_zero](./images/task_8_zero.png)  
-**Figure 29:** Zero-out the suspect drive.
+**Figure 30:** Zero-out the suspect drive.
 
 ### Task 8: Repeat Tasks 4-6.
 
@@ -175,53 +176,76 @@ We now begin to repeat the activities 4-6 towards the zeroed-out USB drive. For 
 
 So, at this point we acquire an image of the drive again using `dcfldd` and compare the hashes once more to confirm integrity.  
 ![acquire_zerod.png](./images/acquire_zerod.png)  
-**Figure 30:** Acquiring `image1_zerod.dd` of suspect drive after zero-out.  
+**Figure 31:** Acquiring `image1_zerod.dd` of suspect drive after zero-out.  
 
 ![hash_match_zerod](./images/hash_match_zerod.png)  
-**Figure 31:** Verify `image1)zerod.dd` with previously calculated hash of the zeroed drive.
+**Figure 32:** Verify `image1_zerod.dd` with previously calculated hash of the zeroed drive.  
 
+
+Now `image1_zerod.dd` contains an image of the drive after we've run our zero-out. We begin to repeat Task 5 by opening up the Windows virtual machine once more, and then opening Autopsy. We then create a case and add `image1_zerod.dd` as a raw image.  
+
+![add_zerod_source](./images/add_zerod_source.png)  
+**Figure 34:** Adding raw image file of zeroed out suspect drive.
+
+
+This time there is a problem. 
+
+![error](./images/error.png)  
+**Figure 35:** Autopsy cannot determine file system type.
+
+
+Autopsy cannot detemine the file system type because we've destroyed the file system by running a `dd if=/dev/zero of=/dev/sdb`. That command writes zero to every bit on the drive, so there are no partitions or file systems to examine. Just to be sure I repeated this step twice, both times achieving the same result.
 
 
 
 ### Task 9: Answer the questions. Please attach screenshots to prove your answers when necessary.  
 
 1. **In Task 4, the acquired image has an extension of “.dd”. In Task 3, what is the extension for the
-image file?**
-
+image file?**  
   FTK uses an extension of `.001`. We can discover this by looking at the output of FTK Imager, and seeing the file we created is `usbBill.001`.  
   ![task_3_extension](./images/task_3_extension.png)  
-  **Figure 32:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
+  **Figure 36:** File created by FTK Imager has `.001` extension, see `usbBill.001`.
 
-2. **In Task 5, how many files are there on the USB drive? What are they? Please attach screenshots
-to prove your answer.**
-   Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.  
+2. **In Task 5, how many files are there on the USB drive? What are they?**    
+	* Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.  
    ![no_files](./images/no_files.png)  
-   **Figure 33:** There are no files that aren't deleted existing on the drive.
+   **Figure 37:** There are no files that aren't deleted existing on the drive.
 
-3. **In Task 5, which file/files are deleted? Please attach screenshots to prove your answer.**  
-   Because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.
+3. **In Task 5, which file/files are deleted?**  
+	* As I stated in question 2, because the drive had been zeroed out twice due to previous activities in the class. All the files on the drive were deleted files, and all these files were `.mft` files except for the single `.docx` we created in task 2.   
+	![no_files](./images/no_files.png)  
+   **Figure 38:** Deleted files found on the drive.
 
-4. **In Task 6, are you able to find any hit when you search “Warranties” as the key word? In which
-file is the key word located? Please attach screenshots to prove your answer.**  
+4. **In Task 6, are you able to find any hit when you search *Warranties* as the key word? In which
+file is the key word located?**  
+	* I was able to get a hit for *Warranties*. The file the word was located in was `f0248704.docx`, which was actually the remains of our `test.docx` we created before formatting the drive.
+	![sector](./images/sector.png)    
+	**Figure 39:** Search results for *Warranties*  
 
 5. **In Task 8, how many files are there on the USB drive? What are they? Please attach screenshots
 to prove your answer.**  
 
+
 6. **In Task 2, you performed a “disk format” operation towards the USB drive. Did this operation
-completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
+completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know?**    
+	* No, it did not delete the file completely. The MFT records for the file were deleted, the file is still recoverable though after the formatting, as you can see in the figure below.
+	![file_extracted_doc_opened](./images/file_extracted_doc_opened.png)  
+	**Figure 40:** The contents of  `f0248704.docx`, containing *Warranties*.  
+
+
+7. **In Task 7, you performed a `zero out` operation towards the USB drive. Did this operation
+completely erase the `test.doc` (or `test.docx`) file in the USB drive? How do you know? Please
 provide a screenshot to prove your answer.**  
 
+8. **Did have any surprise in Task 5? Did you see any other files other than `test.doc` or `test.docx`?**   
+	* The only files on the drive were the deleted remains of `test.docx` and some deleted .`mft` files. This wasn't a surprise.  
+	![all_files](./images/all_files.png)  
+	**Figure 41:** We the only files on the drive are the 6 that were deleted.
 
-7. **In Task 7, you performed a “zero out” operation towards the USB drive. Did this operation
-completely erase the “test.doc” (or “test.docx”) file in the USB drive? How do you know? Please
-provide a screenshot to prove your answer.**  
-
-8. **Did have any surprise in Task 5? Did you see any other files other than “test.doc” or “test.docx”?
-Please provide a screenshot to prove your answer.**  
-
-
-9. **In Task 8, did you see any other files other than “test.doc” or “test.docx”? Please provide a
+9. **In Task 8, did you see any other files other than `test.doc` or `test.docx`? Please provide a
 screenshot to prove your answer.**  
 
-10. **To summarize the questions above, what are the difference between disk formatting in
+10. **To summarize the questions above, what is the difference between disk formatting in
 Windows and the zero-out operation?**  
+	* Formatting just deletes file system, so it no longer references the data, however the sectors on which the data is stored remain unchanged. 
+	* The zero-out operation goes to each sector of the drive and sets the value of each bit to zero. This destroys all data that was stored in every sector on the drive.
