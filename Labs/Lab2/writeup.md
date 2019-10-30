@@ -268,8 +268,10 @@ provide a screenshot to prove your answer.**
 
 9. **In Task 8, did you see any other files other than `test.doc` or `test.docx`? Please provide a
 screenshot to prove your answer.** 
-	* No, there were no files on the disk.
-	![all_files_zerod](./images/all_files_zerod.png)  
+
+	* No, there were no files on the disk. 
+
+	![all_files_zerod](./images/all_files_zerod.png)
 	\ **Figure 46:** No files exist on the drive after we run a zero-out 
 
 10. **To summarize the questions above, what is the difference between disk formatting in
