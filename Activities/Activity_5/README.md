@@ -143,7 +143,7 @@ displayed.
 
 3. Compare this time and the time you got from data interpreter. Are they the same? If not, why?  
     * The time for the Data Interpreter is ahead of what the File Explorer says. I did try and Google this, but didn't find an answer. Playing around with the WinHex options revealed the answer to me. When we go to `Options->Data Interpreter` and check the `Timestamps based on UTC` box, the dates actually do match. The reason they did not match previously is because the File Explorer was basing it off UTC, and the Data Interpreter was not. See below the screenshots on correcting this.   
-    ![2_based_utc](./images/2_based_utc)  
+    ![2_based_utc](./images/2_based_utc.png)  
     **Figure 16:** Selecting `Timestamps based on UTC` for Data Interpreter.  
 
     ![2_created_UTC](./images/2_created_UTC.png)  
@@ -169,9 +169,21 @@ your answer.
 
 
 7. What is the file name? In which attribute and at what position can you find it?  
+    * As we've learned from lecture 5's handout, if the file name is longer than eight characters there are two attributes `0x30`. Since our file name is longer than 8 characters we fall into this case. That means we have a short file name, and a long file name.
+    * Short file names are found at offset `0x5A` from the first `0x30` attribute. Our short file name is `LAB1PA~1.TXT`.  
+    ![2_short_filename](./images/2_short_filename.png)  
+    **Figure 21:** The short file name at `0x5A` from the first `0x30` attribute.  
+    * Long file names are found at offset `0x5A` from the second `0x30` attribute.
+    ![2_long_filename](./images/2_long_filename.png)  
+    **Figure 22:** Long file name at offset `0x5A` from the second `0x30` attribute.  
 
 
+8. Is this file a resident file or nonresident file? Where can you find the evidence?  
+    * The resident/nonresident flag exists at offset `0x08` from attribute `0x80`.  In this case we can see it is a resident file. This makes sense because it is only 194 Bytes in size.  
+    ![2_resident](./images/2_resident.png)  
+    **Figure 23:** Resident flag set to `0x00`, meaning it is a resident file.
 
-8. Is this file a resident file or nonresident file? Where can you find the evidence?
-
-9. In which attribute can you find the data run? Where is the start of the data run?
+9. In which attribute can you find the data run? Where is the start of the data run?  
+    * The start of the data run for resident files exists at offset `0x18` from attribute `0x80`.
+    ![2_start_datarun](./images/2_start_datarun.png)  
+    **Figure 24:** The start of the data run at offset `0x18` from attribute `0x80`.
