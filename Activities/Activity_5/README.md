@@ -117,11 +117,11 @@ At this point we open up `lab1part2.txt`, and click at the beginning of the reco
 **Figure 11:** Beginning of the record for `lab1part2.txt`.
 
 
-In order to fine the start of the `0x10` attribute, we click the beginning of the MFT record and drag until the offset counter is `0x38`.  
+In order to find the start of the `0x10` attribute, we click the beginning of the MFT record and drag until the offset counter is `0x38`.  
 ![2_offset_38](./images/2_offet_38.png)  
 **Figure 12:** The start of attribute `0x10` at offset `0x38`.  
 
-The files created date and time can be found at offset `0x10` to `0x1F` from the beginning of attribute `0x10`.  
+The file's created date and time can be found at offset `0x10` to `0x1F` from the beginning of attribute `0x10`.  
 ![created_hex](./images/2_created_hex.png)  
 **Figure 13:** File created date and time.
 
@@ -173,7 +173,7 @@ your answer.
     * Short file names are found at offset `0x5A` from the first `0x30` attribute. Our short file name is `LAB1PA~1.TXT`.  
     ![2_short_filename](./images/2_short_filename.png)  
     **Figure 21:** The short file name at `0x5A` from the first `0x30` attribute.  
-    * Long file names are found at offset `0x5A` from the second `0x30` attribute.
+    * Long file names are found at offset `0x5A` from the second `0x30` attribute. Our short file name is `lab1part2.txt`.
     ![2_long_filename](./images/2_long_filename.png)  
     **Figure 22:** Long file name at offset `0x5A` from the second `0x30` attribute.  
 
