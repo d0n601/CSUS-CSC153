@@ -118,33 +118,59 @@ At this point we open up `lab1part2.txt`, and click at the beginning of the reco
 
 
 In order to fine the start of the `0x10` attribute, we click the beginning of the MFT record and drag until the offset counter is `0x38`.  
-![2_offset_38](./images/2_offset_38.png)  
+![2_offset_38](./images/2_offet_38.png)  
 **Figure 12:** The start of attribute `0x10` at offset `0x38`.  
 
 The files created date and time can be found at offset `0x10` to `0x1F` from the beginning of attribute `0x10`.  
+![created_hex](./images/2_created_hex.png)  
+**Figure 13:** File created date and time.
 
-
+Now, we repeat the steps in Figure 13 to answer the questions found below.
 
 #### Questions  
 
-1. According to the data interpreter, what is the file create date and time for the file lab1part.txt?
-Take a screenshot to prove your answer.  
+1. According to the data interpreter, what is the file create date and time for the file `lab1part.txt`?  
+    * The file created date and time is `11/02/2019 00:19:43` according to the data interpreter.  
+    ![created_hex](./images/2_created_hex.png)  
+    **Figure 14:** Data Interpreter's file created date and time.  
 
-2. Using File Explorer and go to the folder where the lab1part2.txt located, right click on the arrow
+2. Using File Explorer and go to the folder where the `lab1part2.txt` located, right click on the arrow
 near “Size” or “Name”, and select the “Date created”. Now the “Date created” time is also
-displayed. Take a screenshot to prove your answer.
+displayed.
+    * The File Explorer's file created date and time is `11/01/2019 at 5:19PM`.  
+    ![lab2_properties](./images/lab2_properties.png)  
+    **Figure 15:** File Explorer's created date and time.
 
-3. Compare this time and the time you got from data interpreter. Are they the same? If not, why
-(You may google online to get the answer)?
+3. Compare this time and the time you got from data interpreter. Are they the same? If not, why?  
+    * The time for the Data Interpreter is ahead of what the File Explorer says. I did try and Google this, but didn't find an answer. Playing around with the WinHex options revealed the answer to me. When we go to `Options->Data Interpreter` and check the `Timestamps based on UTC` box, the dates actually do match. The reason they did not match previously is because the File Explorer was basing it off UTC, and the Data Interpreter was not. See below the screenshots on correcting this.   
+    ![2_based_utc](./images/2_based_utc)  
+    **Figure 16:** Selecting `Timestamps based on UTC` for Data Interpreter.  
 
-4. What is the size of the MFT record?
+    ![2_created_UTC](./images/2_created_UTC.png)  
+    **Figure 17:** Now the file created date and times both match at 5:19PM November 1st 2019.  
 
-5. What is the length of the header for the MFT record?
+
+4. What is the size of the MFT record?  
+    * The size of the MTF record is, in big endian, is `00 00 04 00`. We can find that at offset `0x1C` to `0x1F` from `0x00`.  
+    ![2_mft_size_is_04](./images/2_mft_size_is_04.png)  
+    **Figure 18:** The size of the MFT record.  
+
+5. What is the length of the header for the MFT record?  
+    * The header length for the MFT record is `0x38`. This can be found at offset `0x14` from `0x00`.  
+    ![2_lenth_header_38](./images/2_lenth_header_38.png)  
+    **Figure 19:** The length of the MFT record's header is `0x38`.
+
 
 6. What is the file’s last modified date and time? Take a screenshot with data interpreter to prove
 your answer.
+    * The file's last modified date and time are `11/01/2019 17:19:43`. We can find that information at offset `0x20` to `0x27` from `0x10`. It should be noted that this is with the box for `Timestamps based on UTC` selected.
+    ![2_last_modified](./images/2_last_modified.png)  
+    **Figure 20:** File last modified date, based on UTC.  
 
-7. What is the file name? In which attribute and at what position can you find it?
+
+7. What is the file name? In which attribute and at what position can you find it?  
+
+
 
 8. Is this file a resident file or nonresident file? Where can you find the evidence?
 
