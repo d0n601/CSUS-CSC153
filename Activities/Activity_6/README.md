@@ -32,12 +32,14 @@ The last step for part 1 is to rename the combined file to include the `.jpg` ex
   
 ### Part 2: Practice recovering graphics files using Winhex.  
 
-Now we download the file `smallsmallsmall` from Canvas and save it to our working directory folder. This file is a PNG file, but the
+Now we download the file `smallsmallsmall` from Canvas and save it to our working directory folder. This file is a `PNG` file, but the
 header has been modified by the suspect.  
 ![2_download_smallsmall](./images/2_download_smallsmall.png)  
-**Figure 6:** Downloading `smallsmall` to our local machine, in a shared folder with our the Windows VM.  
+**Figure 6:** Downloading `smallsmallsmall` to our local machine, in a shared folder with our the Windows VM.  
 
 Now we boot our Windows VM and start WinHex with the Run as administrator option.  
+![2_run_winhex_admin](./images/2_run_winhex_admin.png)  
+**Figure 7:** Launching WinHex as Admin. 
 
 
 
