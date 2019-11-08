@@ -42,5 +42,21 @@ Now we boot our Windows VM and start WinHex with the Run as administrator option
 **Figure 7:** Launching WinHex as Admin. 
 
 
+As a safety precaution, we click `Options -> Edit Mode` from the menu. In the Select Mode dialog box,  we click `Read-Only Mode (=write protected)`, as shown in Figure 8, and then click OK.  
+![2_readonly](./images/2_readonly.png)    
+**Figure 8:** Select read-only mode for safety.  
 
-As a safety precaution, click Options, Edit Mode from the menu. In the Select Mode dialog box, click Read-Only Mode (=write protected), as shown in Figure 2, and then click OK.
+
+Next we click `Tools -> Open Disk` from the menu. In the View Disk dialog box, we click the drive where you saved `smallsmallsmall`. In our case we've moved the file to the `Desktop`, so we'll select the `C:` drive.  
+![2_select_c_drive](./images/2_select_c_drive.png)  
+**Figure 9:** Selecting the `C:` drive to open and examine.  
+
+After we click `Ok` WinHex beings traversing the `C:` drive.  
+![2_grabbing_c](./images/2_grabbing_c.png)  
+**Figure 10:** WinHex traversing our `C:` drive.  
+
+The following steps will find the file “smallsmallsmall” and recover it. Of course, in this lab, you can directly navigate to your work folder where smallsmallsmall file is stored and work on that. However, in a real investigation, you may not know where the file was stored. You can then do a search in the $MFT to find it.
+
+12. Scroll down and find the $MFT file, right click and choose “open”. You’ll open the MFT file in a
+new window.
+
