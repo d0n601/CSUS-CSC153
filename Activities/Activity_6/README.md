@@ -55,8 +55,25 @@ After we click `Ok` WinHex beings traversing the `C:` drive.
 ![2_grabbing_c](./images/2_grabbing_c.png)  
 **Figure 10:** WinHex traversing our `C:` drive.  
 
-The following steps will find the file “smallsmallsmall” and recover it. Of course, in this lab, you can directly navigate to your work folder where smallsmallsmall file is stored and work on that. However, in a real investigation, you may not know where the file was stored. You can then do a search in the $MFT to find it.
 
-12. Scroll down and find the $MFT file, right click and choose “open”. You’ll open the MFT file in a
-new window.
+Now we scroll down and find the `$MFT` file, right click and choose open. We open the MFT file in a new window as seen in the figure 11 below.  2
+![2_open_MFT](./images/2_open_MFT.png)  
+**Figure 11:** Opening `$MFT` to seach for our file. 
+
+
+The next task is to find the `smallsmallsmall` file. In the `$MFT`, characters in a file name are usually separated by hexadecimal value `00`. The hexidecimal value for the *small* is `73 6d 61 6c 6c`. Separating each character with `00` it becomes `73 00 6d 00 61 00 6c 00 6c`. Repeating this three times to get *smallsmallsmall* becomes `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C`.  
+
+We click `Search -> Find Hex Values`, and query the hexidecimal string we calculated above.  
+![2_fine_hex](./images/2_fine_hex.png)  
+**Figure 12:** Searching for the hexidecimal title of `smallsmallsmall`.  
+
+After our search we can see that there is a hit.  
+![2_found_small](./images/2_found_small.png)  
+**Figure 13:** A it for the hexidecimal search.  
+
+
+
+
+
+
 
