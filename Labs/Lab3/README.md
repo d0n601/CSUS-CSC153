@@ -6,7 +6,7 @@
 * Use WinHex to explore the MFT and be able to analyze both resident and non-resident files.
 
 
-## Part 1: Explore MFT of a file.  
+## Part 1: Explore MFT of a file
 
 To begin, we create a text file named `forensicsclass.txt` and put it on our Desktop.  
 ![1_create_forensicsclass_file](./images/1_create_forensicsclass_file.png)  
@@ -123,3 +123,36 @@ The file’s created date and time can be found from offset `0x18` to `0x1F` fro
 	* The reason for this would be the **hidden data stream**. This creates an additional `0x80` attribute for the stream. We can verify this by going to offset `0x18` for the second `0x80` attribute. This is where the data run is for resident files. This contains the secret message.  
 	![1_secret_datarun](./images/1_secret_datarun.png)  
 	**Figure 22:** Secret message contained inside of the data run for the second `0x80` attribute.
+
+
+## Part 2: Analyze a given MFT record  
+
+Given the MFT record below, please answer the questions from 10-15.  
+![2](./images/2.png)  
+**Figure 23:** Answer questions 10-15.  
+
+##$ Questions for Part 2  
+
+10. Is this file a resident file or nonresident file? Where can you find the evidence?  
+  * The resident/nonresident flag exists at offset `0x08` from attribute `0x80` . In this case we can see it is a **nonresident file**, as the flag is `0x01`.  
+  ![2_1](./images/2_1.png)  
+  **Figure 24:** Nonresident file flag.
+
+11. How many data runs does this file have?  
+  * This file has *two* data runs.
+  ![2_2](./images/2_2.png)  
+  **Figure 25:** Bytes underlining start of data runs in red, and remainders in black.
+
+12. What is the starting cluster address value for the first data run (LCN)?  
+  * The starting cluster address value is `0x0C0000`. We multiply this by `0x`
+  ![2_3](./images/2_3.png)  
+  **Figure 26:** Starting LCN Address.
+
+13. How many clusters are assigned to the first data run?  
+  * The number of clusters assigned to the first data run is `0x00C820`.  
+  ![2_4](./images/2_4.png)  
+  **Figure 27:** Number of clusters assigned to this data run.
+
+14. Does this file have other data runs? If yes, what is the starting cluster address value for the second data run (LCN)? You don’t need to calculate the result if you provide a math expression.  
+
+15. How many clusters are assigned to the second data run?
