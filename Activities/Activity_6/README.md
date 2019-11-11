@@ -110,43 +110,48 @@ Next we right click and choose `Edit -> Copy Block -> Into New File`.
 The correct header for the PNG file format is `89 50 4E 47`, so we change the header of the new file from `33 33 33 33` to `89 50 4E 47`, and save it as *recovered*.
 
 ![2_replace_header](./images/2_replace_header.png)  
-**Figure 24:** Replace file header with proper header for PNG.  
+**Figure 22:** Replace file header with proper header for PNG.  
 
 
 ![2_save_recovered](./images/2_save_recovered.png)  
 **Figure 23:** Saving file as *recovered*.  
 
 
-Now once we add the `.png` extension, we can open the file `recovered.png` and see that it's a `58x75` pixel version of the image from Part 1.
+Now once we add the `.png` extension, we can open the file `recovered.png` and see that it's a `58x75` pixel version of the image from Part 1.  
+![2_open_small](./images/2_open_small.png)  
+**Figure 24:** Opening recovered file.
 
 ### Questions  
 
 1. What were the hexadecimal values did you used to search for the file `smallsmallsmall` in steps 13 and 15?
     * The hexadecimal value searched for was `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C00`.
     ![2_fine_hex](./images/2_fine_hex.png)  
-    **Figure 24:** Searching for the hexadecimal title of `smallsmallsmall`. 
+    **Figure 25:** Searching for the hexadecimal title of `smallsmallsmall`. 
 
 2. Is the file a resident file or non-resident file? How do you know?  
     * This is a **non-resident** file, we can tell by looking at offset `0x08` from attribute `0x80` and see the flag is set to `0x01`. 
     ![2_non_resident](./images/2_non_resident.png)
-    **Figure 25:** Non-resident flag. 
+    **Figure 26:** Non-resident flag. 
 
-3. How many data runs does this file has? Please take a screenshot to show the evidence.  
+3. How many data runs does this file has?
+	* In my case this file had only **one data run**.  
+	![2_end_first_run](./images/2_start_pos_datarun.png)  
+	**Figure 27:** One data run for this file.
 
 4. What is the starting position for the first data run?  
     * The starting position for the first data run is at offset `0x00114B90`.  
 	 ![2_end_first_run](./images/2_start_pos_datarun.png)  
-	 **Figure 26:** Starting position for first data run.
+	 **Figure 28:** Starting position for first data run.
 
 5. What is the size of the first data run?  
     * The size of the first data run is `0x05`.  
 	 ![2_end_first_run](./images/2_start_pos_datarun.png)  
-	 **Figure 27:** Size of first data run is `0x05`.
+	 **Figure 29:** Size of first data run is `0x05`.
 
 6. In step 20, what is the header of the file `smallsmallsmall` which you downloaded from Canvas? Please provide the first 4 bytes of the hexadecimal values. 
 	*  The header of the file downloaded from Canvas was `33 33 33 33`.
 	![2_header_all_33](./images/2_header_all_33.png)
-	**Figure 28:** The header of the `smallsmallsmall` file downloaded from Canvas.
+	**Figure 30:** The header of the `smallsmallsmall` file downloaded from Canvas.
 
 
 
