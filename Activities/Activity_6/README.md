@@ -61,7 +61,7 @@ Now we scroll down and find the `$MFT` file, right click and choose open. We ope
 **Figure 11:** Opening `$MFT` to seach for our file. 
 
 
-The next task is to find the `smallsmallsmall` file. In the `$MFT`, characters in a file name are usually separated by hexadecimal value `00`. The hexidecimal value for the *small* is `73 6d 61 6c 6c`. Separating each character with `00` it becomes `73 00 6d 00 61 00 6c 00 6c`. Repeating this three times to get *smallsmallsmall* becomes `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C`.  
+The next task is to find the `smallsmallsmall` file. In the `$MFT`, characters in a file name are usually separated by hexadecimal value `00`. The hexadecimal value for the *small* is `73 6d 61 6c 6c`. Separating each character with `00` it becomes `73 00 6d 00 61 00 6c 00 6c`. Repeating this three times to get *smallsmallsmall* becomes `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C00`.  
 
 We click `Search -> Find Hex Values`, and query the hexidecimal string we calculated above.  
 ![2_fine_hex](./images/2_fine_hex.png)  
@@ -121,20 +121,32 @@ Now once we add the `.png` extension, we can open the file `recovered.png` and s
 
 ### Questions  
 
-1. What the hexadecimal values did you use to search for the file `smallsmallsmall` in step 13 and 15?  
+1. What were the hexadecimal values did you used to search for the file `smallsmallsmall` in steps 13 and 15?
+    * The hexadecimal value searched for was `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C00`.
+    ![2_fine_hex](./images/2_fine_hex.png)  
+    **Figure 24:** Searching for the hexadecimal title of `smallsmallsmall`. 
 
-2. Is the file a resident file or non-resident file? How do you know? Please take a screenshot to show the evidence.  
+2. Is the file a resident file or non-resident file? How do you know?  
+    * This is a **non-resident** file, we can tell by looking at offset `0x08` from attribute `0x80` and see the flag is set to `0x01`. 
+    ![2_non_resident](./images/2_non_resident.png)
+    **Figure 25:** Non-resident flag. 
 
 3. How many data runs does this file has? Please take a screenshot to show the evidence.  
 
-4. What is the starting position for the first data run? Please take a screenshot to show the evidence.  
+4. What is the starting position for the first data run?  
+    * The starting position for the first data run is at offset `0x00114B90`.  
+	 ![2_end_first_run](./images/2_start_pos_datarun.png)  
+	 **Figure 26:** Starting position for first data run.
 
 5. What is the size of the first data run?  
+    * The size of the first data run is `0x05`.  
+	 ![2_end_first_run](./images/2_start_pos_datarun.png)  
+	 **Figure 27:** Size of first data run is `0x05`.
 
-6. In step 20, what is the header of the file `smallsmallsmall` which you downloaded from Canvas? Please provide the first 4 bytes of the hexadecimal values. Please take a screenshot to show the  evidence.  
-
-	*  ![2_header_all_33](./images/2_header_all_33.png)
-	   **Figure X:** The header of the `smallsmallsmall` file downloaded from Canvas.
+6. In step 20, what is the header of the file `smallsmallsmall` which you downloaded from Canvas? Please provide the first 4 bytes of the hexadecimal values. 
+	*  The header of the file downloaded from Canvas was `33 33 33 33`.
+	![2_header_all_33](./images/2_header_all_33.png)
+	**Figure 28:** The header of the `smallsmallsmall` file downloaded from Canvas.
 
 
 
