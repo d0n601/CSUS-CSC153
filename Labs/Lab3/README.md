@@ -44,7 +44,7 @@ To examine or disk, we click `Tools -> Open Disk` from the menu. In the View Dis
 ![1_select_c_drive](./images/1_select_c_drive.png)  
 **Figure 7:** Selecting the `C:` drive as our disk to open.  
 
-![1_traversing](./images/1_traversing)  
+![1_traversing](./images/1_traversing.png)  
 **Figure 8:** WinHex traversing the `C:` drive.  
 
 
@@ -54,7 +54,7 @@ Before we examine the disk we need to navigate to `Options -> Data Interpreter` 
 
 
 Now in WinHex we need to navigate to where we saved `forensicsclass.txt` and click it.  
-![1_navigate](./images/1_navigate.png)  
+![1_navigate](./images/1_nagivate.png)  
 **Figure 10:** Selecting `forensicsclass.txt`.  
 
 
@@ -62,14 +62,17 @@ Next we click at the beginning of the record, on the letter `F` in `FILE,` and t
 ![1_0x01att](./images/1_0x01att.png)  
 **Figure 11:** Attribute `0x01` at offset `0x38` from the start of the MFT record.
 
-The file’s create date and time can be found from offset `0x18` to `0x1F` from the beginning of attribute `0x10`. 
+The file’s create date and time can be found from offset `0x18` to `0x1F` from the beginning of attribute `0x10`.  In the same manner we used above, we can determine the files created date and time to be `11/10/19 17:26:00`.  
+![1_created_date_time](./images/1_created_date_time.png)  
+**Figure 12:** File created date and time for `forensicsclass.txt`.  
 
-
-Use similar method as in step 7 to find the file create date and time for forensicsclass.txt. Refer to your handout for the attribute details.  
 
 
 ### Questions for Part 1  
-1. According to the data interpreter, what is the file create date and time for the file forensicsclass.txt? Take a screenshot to prove your answer.
+1. According to the data interpreter, what is the file create date and time for the file `forensicsclass.txt`?  
+    * The created date and time for `forensicsclass.txt` is **11/10/19 17:26:00**. It's found from offset `0x18` to `0x1F` from the beginning of  the attribute `0x10`.  
+    ![1_created_date_time](./images/1_created_date_time.png)  
+    **Figure 13:** File created date and time for `forensicsclass.txt`.
 
 2. What is the size of the MFT record?
 
