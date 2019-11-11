@@ -70,22 +70,55 @@ The file’s create date and time can be found from offset `0x18` to `0x1F` from
 
 ### Questions for Part 1  
 1. According to the data interpreter, what is the file create date and time for the file `forensicsclass.txt`?  
-    * The created date and time for `forensicsclass.txt` is **11/10/19 17:26:00**. It's found from offset `0x18` to `0x1F` from the beginning of  the attribute `0x10`.  
+    * The created date and time for `forensicsclass.txt` is **11/10/19 17:26:00**. It's found from offset `0x18` to `0x1F` from the beginning of  the attribute `0x10`. It should be noted that this is with the box for `Timestamps based on UTC` selected.    
     ![1_created_date_time](./images/1_created_date_time.png)  
     **Figure 13:** File created date and time for `forensicsclass.txt`.
 
 2. What is the size of the MFT record?
+    * The size of the MTF record is, in big endian, is `00 00 04 00` . We can find that at offset `0x1C to 0x1F` from attribute `0x00`.  
+    ![1_mft_size](./images/1_mft_size.png)    
+    **Figure 14:** The size of the MTF record for `forensicsclass.txt` is `0x0400`.
 
-3. What is the length of the header?
+3. What is the length of the header?  
+	* The header length for the MFT record is `0x` . This can be found at offset `0x14` from `0x00`.
+	![1_header_length](/images/1_header_length.png)  
+	**Figure 15:** The length of the MTF record header for `forensicsclass.txt` is `0x38`.  
 
-4. What is the file’s last modified date and time?
+4. What is the file’s last modified date and time?  
+	* The file’s last modified date and time is  **11/10/19 17:26:00** . We can find that information at offset `0x20` to `0x27` from attribute `0x10` . It should be noted that this is with the box for `Timestamps based on UTC` selected.  
+	![1_created_date_time](./images/1_created_date_time.png)  
+    **Figure 16:** File last modified date and time for `forensicsclass.txt`.
 
-5. How many 0x30 attributes does this file have? Why?
+
+5. How many `0x30` attributes does this file have? Why?  
+   * There are **two** attribute `0x30`s'. This is because our file name is longer than 8 characters, so we have a **short file name**, and a **long file name**. 
 
 6. What is the name of this file?
+   * As stated above there are two file names, a short file name and long file name.
+   * Short file names are found at offset `0x5A` from the **first** `0x30` attribute. Our short file name is `FORENS~1.TXT`. 
+   ![1_shotfile_name](./images/1_shotfile_name.png)    
+   **Figure 17:** The short file name at `0x5A` from the first `0x30` attribute.    
+   * Long file names are found at offset `0x5A` from the **second** `0x30` attribute. Our short file name is `forensicsclass.txt`.
+   ![1_longfile_name](./images/1_longfile_name.png)  
+   **Figure 18:** The long file name at `0x5A` from the second `0x30` attribute.
 
-7. Is this file a resident file or nonresident file? Where can you find the evidence?
+7. Is this file a resident file or nonresident file? Where can you find the evidence?  
+	* The resident/nonresident flag exists at offset `0x08` from attribute `0x80` . In this case we can see it is a **resident file**. This makes sense because it is only `40` Bytes in size.  
+	![1_resident_file](./images/1_resident_file.png)  
+	**Figure 19:** The resident/non-resident flag set to `0x00`, meaning resident.
 
-8. Did you find the hidden message in the file when you check the MFT record? Take a screenshot to show the hidden message.
 
-9. How many 0x80 attributes does this file have? What is the possible reason?
+8. Did you find the hidden message in the file when you check the MFT record?   
+	* Yes, it was not difficult to find the hidden message. It lies inside of a second `0x80` attribute, and is easily found by looking at the `ascii` screen on WinHex.
+	![1_secret_message](./images/1_secret_message.png)  
+	**Figure 20:** The secret message contained in the second `0x80` attribute.  
+
+	* More specifically, it's located in the data run for the second `0x80` attribute at offset `0x18`.  
+	![1_secret_datarun](./images/1_secret_datarun.png)  
+	**Figure 21:** Secret message contained inside of the data run for the second `0x80` attribute.
+
+
+9. How many `0x80` attributes does this file have? What is the possible reason?  
+	* The reason for this would be the **hidden data stream**. This creates an additional `0x80` attribute for the stream. We can verify this by going to offset `0x18` for the second `0x80` attribute. This is where the data run is for resident files. This contains the secret message.  
+	![1_secret_datarun](./images/1_secret_datarun.png)  
+	**Figure 22:** Secret message contained inside of the data run for the second `0x80` attribute.
