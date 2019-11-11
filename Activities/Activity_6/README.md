@@ -47,7 +47,7 @@ As a safety precaution, we click `Options -> Edit Mode` from the menu. In the Se
 **Figure 8:** Select read-only mode for safety.  
 
 
-Next we click `Tools -> Open Disk` from the menu. In the View Disk dialog box, we click the drive where you saved `smallsmallsmall`. In our case we've moved the file to the `Desktop`, so we'll select the `C:` drive.  
+Next we click `Tools -> Open Disk` from the menu. In the View Disk dialog box, we click the drive where we saved `smallsmallsmall`. In our case we've moved the file to the `Desktop`, so we'll select the `C:` drive.  
 ![2_select_c_drive](./images/2_select_c_drive.png)  
 **Figure 9:** Selecting the `C:` drive to open and examine.  
 
@@ -56,12 +56,12 @@ After we click `Ok` WinHex beings traversing the `C:` drive.
 **Figure 10:** WinHex traversing our `C:` drive.  
 
 
-Now we scroll down and find the `$MFT` file, right click and choose open. We open the MFT file in a new window as seen in the figure 11 below.  2
+Now we scroll down and find the `$MFT` file, right click and choose open. We open the MFT file in a new window as seen in the figure 11 below.
 ![2_open_MFT](./images/2_open_MFT.png)  
 **Figure 11:** Opening `$MFT` to seach for our file. 
 
 
-The next task is to find the `smallsmallsmall` file. In the `$MFT`, characters in a file name are usually separated by hexadecimal value `00`. The hexadecimal value for the *small* is `73 6d 61 6c 6c`. Separating each character with `00` it becomes `73 00 6d 00 61 00 6c 00 6c`. Repeating this three times to get *smallsmallsmall* becomes `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C00`.  
+The next task is to find the `smallsmallsmall` file. In the `$MFT`, characters in a file name are usually separated by hexadecimal value `00`. The hexadecimal value for the word *small* is `73 6d 61 6c 6c`. Separating each character with `00` it becomes `73 00 6d 00 61 00 6c 00 6c`. Repeating this three times to get *smallsmallsmall* becomes `73006D0061006C006C0073006D0061006C006C0073006D0061006C006C00`.  
 
 We click `Search -> Find Hex Values`, and query the hexidecimal string we calculated above.  
 ![2_fine_hex](./images/2_fine_hex.png)  
@@ -71,7 +71,7 @@ After our search we can see that there is a hit.
 ![2_found_small](./images/2_found_small.png)  
 **Figure 13:** A it for the hexidecimal search.  
 
-Following the same methodology as in hands-on activity , we examine the `$MFT` file record. We can find the start of the data run for this file by looking at offset `0x40` from attribute `0x80`.  
+Following the same methodology as we did in hands-on activity 5 , we examine the `$MFT` file record. We can find the start of the data run for this file by looking at offset `0x40` from attribute `0x80`.  
 ![2_start_pos_datarun](./images/2_start_pos_datarun.png)  
 **Figure 14:** First data run info is `31 05 90 4B 11 00`.  
 
