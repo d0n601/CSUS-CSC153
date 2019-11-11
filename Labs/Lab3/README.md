@@ -92,67 +92,78 @@ The file’s created date and time can be found from offset `0x18` to `0x1F` fro
 
 5. How many `0x30` attributes does this file have? Why?  
    * There are **two** attribute `0x30`s'. This is because our file name is longer than 8 characters, so we have a **short file name**, and a **long file name**.
-   * More information about short and long names is stated in my answer to question 6 below.
-
-6. What is the name of this file?
-   * As stated above there are two file names, a short file name and long file name.
-   * Short file names are found at offset `0x5A` from the **first** `0x30` attribute. Our short file name is `FORENS~1.TXT`.
-   ![1_shotrfile_name](./images/1_shortfile_name.png)    
+   * ![1_shotrfile_name](./images/1_shortfile_name.png)    
    **Figure 17:** The short file name at `0x5A` from the first `0x30` attribute.    
    * Long file names are found at offset `0x5A` from the **second** `0x30` attribute. Our long file name is `forensicsclass.txt`.
    ![1_longfile_name](./images/1_longfile_name.png)  
    **Figure 18:** The long file name at `0x5A` from the second `0x30` attribute.
 
+6. What is the name of this file?
+   * As stated above there are two file names, a short file name and long file name.
+   * Short file names are found at offset `0x5A` from the **first** `0x30` attribute. Our short file name is `FORENS~1.TXT`.
+   ![1_shotrfile_name](./images/1_shortfile_name.png)    
+   **Figure 19:** The short file name at `0x5A` from the first `0x30` attribute.    
+   * Long file names are found at offset `0x5A` from the **second** `0x30` attribute. Our long file name is `forensicsclass.txt`.
+   ![1_longfile_name](./images/1_longfile_name.png)  
+   **Figure 20:** The long file name at `0x5A` from the second `0x30` attribute.
+
 7. Is this file a resident file or nonresident file? Where can you find the evidence?  
 	* The resident/nonresident flag exists at offset `0x08` from attribute `0x80` . In this case we can see it is a **resident file**. This makes sense because it is only `40` Bytes in size.  
 	![1_resident_file](./images/1_resident_file.png)  
-	**Figure 19:** The resident/non-resident flag set to `0x00`, meaning resident.
+	**Figure 21:** The resident/non-resident flag set to `0x00`, meaning resident.
 
 
 8. Did you find the hidden message in the file when you check the MFT record?   
 	* Yes, it was not difficult to find the hidden message. It lies inside of a second `0x80` attribute, and is easily found by looking at the `ascii` screen on WinHex.
 	![1_secret_message](./images/1_secret_message.png)  
-	**Figure 20:** The secret message contained in the second `0x80` attribute.  
+	**Figure 22:** The secret message contained in the second `0x80` attribute.  
 
 	* More specifically, it's located in the data run for the second `0x80` attribute at offset `0x18`.  
 	![1_secret_datarun](./images/1_secret_datarun.png)  
-	**Figure 21:** Secret message contained inside of the data run for the second `0x80` attribute.
+	**Figure 23:** Secret message contained inside of the data run for the second `0x80` attribute.
 
 
 9. How many `0x80` attributes does this file have? What is the possible reason?  
 	* The reason for this would be the **hidden data stream**. This creates an additional `0x80` attribute for the stream. We can verify this by going to offset `0x18` for the second `0x80` attribute. This is where the data run is for resident files. This contains the secret message.  
 	![1_secret_datarun](./images/1_secret_datarun.png)  
-	**Figure 22:** Secret message contained inside of the data run for the second `0x80` attribute.
+	**Figure 24:** Secret message contained inside of the data run for the second `0x80` attribute.
 
 
 ## Part 2: Analyze a given MFT record  
 
 Given the MFT record below, please answer the questions from 10-15.  
 ![2](./images/2.png)  
-**Figure 23:** Answer questions 10-15.  
+**Figure 25:** Answer questions 10-15.  
 
-##$ Questions for Part 2  
+## Questions for Part 2  
 
 10. Is this file a resident file or nonresident file? Where can you find the evidence?  
   * The resident/nonresident flag exists at offset `0x08` from attribute `0x80` . In this case we can see it is a **nonresident file**, as the flag is `0x01`.  
   ![2_1](./images/2_1.png)  
-  **Figure 24:** Nonresident file flag.
+  **Figure 26:** Nonresident file flag.
 
 11. How many data runs does this file have?  
   * This file has *two* data runs.
   ![2_2](./images/2_2.png)  
-  **Figure 25:** Bytes underlining start of data runs in red, and remainders in black.
+  **Figure 27:** Bytes underlining start of data runs in red, and remainders in black.
 
 12. What is the starting cluster address value for the first data run (LCN)?  
-  * The starting cluster address value is `0x0C0000`. We multiply this by `0x`
+  * The starting cluster address value is `0x0C0000`. We multiply this by the cluster size, which is `4096` in decimal or `0x1000` in hexadecimal.  So the cluster address value for the first data run is `0x0C0000 * 0x1000 = 0xC00000000`.
   ![2_3](./images/2_3.png)  
-  **Figure 26:** Starting LCN Address.
+  **Figure 28:** Starting LCN address for first data run.
 
 13. How many clusters are assigned to the first data run?  
   * The number of clusters assigned to the first data run is `0x00C820`.  
   ![2_4](./images/2_4.png)  
-  **Figure 27:** Number of clusters assigned to this data run.
+  **Figure 29:** Number of clusters assigned to the first data run.
 
-14. Does this file have other data runs? If yes, what is the starting cluster address value for the second data run (LCN)? You don’t need to calculate the result if you provide a math expression.  
+14. Does this file have other data runs? If yes, what is the starting cluster address value for the second data run (LCN)? 
+	* Yes there is a second data run.  The starting cluster address value is `0x00C16AAE`. We multiply this by the cluster size, which is `4096` in decimal or `0x1000` in hexadecimal. So the cluster address value for the second data run is `0x00C16AAE * 0x1000 = 0xC16AAE0000`.   
+	![2_5](./images/2_5.png)  
+	**Figure 30:** Starting LCN address for second data run.
 
-15. How many clusters are assigned to the second data run?
+15. How many clusters are assigned to the second data run?  
+	* The number of clusters assigned to the second data run is `0x3C20`.  
+	![2_6](./images/2_6.png)  
+	**Figure 31:** Number of clusters assigned to the second data run.
+
