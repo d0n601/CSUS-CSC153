@@ -22,7 +22,7 @@ Next we append an alternate data stream containing ` If you study hard, then you
 ```console
 echo If you study hard, then you are likely to succeed > forensicsclass.txt:secret
 ```  
-  
+
 
 ![1_append_datastream](./images/1_append_datastream.png)  
 **Figure 3:** Appending alternate data stream `secret` to `forensicsclass.txt`.  
@@ -40,7 +40,7 @@ As safety precaution, click `Options -> Edit Mode` and select `Read-Only Mode (=
 **Figure 6:** Set Edit Mode to Read-Only.  
 
 
-To examine or disk, we click `Tools -> Open Disk` from the menu. In the View Disk dialog box we select the `C:` drive and then click OK.  
+To examine our disk, we click `Tools -> Open Disk` from the menu. In the View Disk dialog box we select the `C:` drive and then click OK.  
 ![1_select_c_drive](./images/1_select_c_drive.png)  
 **Figure 7:** Selecting the `C:` drive as our disk to open.  
 
@@ -62,43 +62,44 @@ Next we click at the beginning of the record, on the letter `F` in `FILE,` and t
 ![1_0x01att](./images/1_0x01att.png)  
 **Figure 11:** Attribute `0x01` at offset `0x38` from the start of the MFT record.
 
-The file’s create date and time can be found from offset `0x18` to `0x1F` from the beginning of attribute `0x10`.  In the same manner we used above, we can determine the files created date and time to be `11/10/19 17:26:00`.  
+The file’s created date and time can be found from offset `0x18` to `0x1F` from the beginning of attribute `0x10`.  In the same manner we used above, we can determine the files created date and time to be `11/10/19 17:26:00`.  
 ![1_created_date_time](./images/1_created_date_time.png)  
 **Figure 12:** File created date and time for `forensicsclass.txt`.  
 
 
 
 ### Questions for Part 1  
-1. According to the data interpreter, what is the file create date and time for the file `forensicsclass.txt`?  
+1. According to the data interpreter, what is the created date and time for the file `forensicsclass.txt`?  
     * The created date and time for `forensicsclass.txt` is **11/10/19 17:26:00**. It's found from offset `0x18` to `0x1F` from the beginning of  the attribute `0x10`. It should be noted that this is with the box for `Timestamps based on UTC` selected.    
     ![1_created_date_time](./images/1_created_date_time.png)  
     **Figure 13:** File created date and time for `forensicsclass.txt`.
 
 2. What is the size of the MFT record?
-    * The size of the MTF record is, in big endian, is `00 00 04 00` . We can find that at offset `0x1C to 0x1F` from attribute `0x00`.  
+    * The size of the MTF record is, in big endian, `00 00 04 00` . We can find this information at from offset `0x1C to 0x1F` from attribute `0x00`.  
     ![1_mft_size](./images/1_mft_size.png)    
     **Figure 14:** The size of the MTF record for `forensicsclass.txt` is `0x0400`.
 
 3. What is the length of the header?  
-	* The header length for the MFT record is `0x` . This can be found at offset `0x14` from `0x00`.
-	![1_header_length](/images/1_header_length.png)  
+	* The header length for the MFT record is `0x38` . This can be found at offset `0x14` from attribute `0x00`.
+	![1_header_length](./images/1_header_length.png)  
 	**Figure 15:** The length of the MTF record header for `forensicsclass.txt` is `0x38`.  
 
 4. What is the file’s last modified date and time?  
-	* The file’s last modified date and time is  **11/10/19 17:26:00** . We can find that information at offset `0x20` to `0x27` from attribute `0x10` . It should be noted that this is with the box for `Timestamps based on UTC` selected.  
+	* The file’s last modified date and time is  **11/10/19 17:26:00** . We can find that information from offset `0x20` to `0x27` of attribute `0x10`. It should be noted that this is with the box for `Timestamps based on UTC` selected.  
 	![1_created_date_time](./images/1_created_date_time.png)  
     **Figure 16:** File last modified date and time for `forensicsclass.txt`.
 
 
 5. How many `0x30` attributes does this file have? Why?  
-   * There are **two** attribute `0x30`s'. This is because our file name is longer than 8 characters, so we have a **short file name**, and a **long file name**. 
+   * There are **two** attribute `0x30`s'. This is because our file name is longer than 8 characters, so we have a **short file name**, and a **long file name**.
+   * More information about short and long names is stated in my answer to question 6 below.
 
 6. What is the name of this file?
    * As stated above there are two file names, a short file name and long file name.
-   * Short file names are found at offset `0x5A` from the **first** `0x30` attribute. Our short file name is `FORENS~1.TXT`. 
-   ![1_shotfile_name](./images/1_shotfile_name.png)    
+   * Short file names are found at offset `0x5A` from the **first** `0x30` attribute. Our short file name is `FORENS~1.TXT`.
+   ![1_shotrfile_name](./images/1_shortfile_name.png)    
    **Figure 17:** The short file name at `0x5A` from the first `0x30` attribute.    
-   * Long file names are found at offset `0x5A` from the **second** `0x30` attribute. Our short file name is `forensicsclass.txt`.
+   * Long file names are found at offset `0x5A` from the **second** `0x30` attribute. Our long file name is `forensicsclass.txt`.
    ![1_longfile_name](./images/1_longfile_name.png)  
    **Figure 18:** The long file name at `0x5A` from the second `0x30` attribute.
 
