@@ -1,4 +1,4 @@
-# Lab 3: Lab 3 Examining NTFS Disks
+# Lab 3: Examining NTFS Disks
 ### CSC 153 - Computer Forensics Principles and Practice
 
 ## Objectives  
