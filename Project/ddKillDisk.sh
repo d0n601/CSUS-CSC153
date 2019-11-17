@@ -1,6 +1,4 @@
 #!/bin/bash
-# Ask the user for their name
-
 echo ======================================================================
 echo  Welcome to dd Kill Disk, a simple disk destroyer for Linux systems.
 echo ======================================================================
