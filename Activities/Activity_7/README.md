@@ -131,7 +131,7 @@ To recover the message from `message-shift-left.txt`, we need to bit-shift it ba
 **Figure 28:** After shifting bits back one to the right. 
 
 We then save the file as `message-shift-right.txt` and use Winhex to compare the MD5 hash values of these three files and determine if `message.txt` is different from `message-shift-left.txt` and `message-shift-right.txt`. We will open all three files in WinHex and compute the MD5 hash values to determine if the files are different.  
-![message_md5](./images/message_md5.png)  
+![message_md5](./images/messge_md5.png)  
 **Figure 29:** MD5 hash for `message.txt`.  
 
 ![message_l_md5](./images/message_l_md5.png)  
