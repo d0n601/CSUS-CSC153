@@ -159,6 +159,29 @@ As we can see from the hash outputs above, and in Figures 29, 30, and 31, the MD
 
 ## Part 6: Data hiding and recovering using XOR  
 
+For this portion we'll create a new text file named `test.txt`, and then type in a short message in the file, such as our name.
+>Ryan Kozak oh hi!!!  
+
+![text_txt](./images/text_txt.png)  
+**Figure 32:** Creating `test.txt`.  
+
+Now we start Winhex and open the file. Next we select all the data and choose `Edit->Modify Data`. In the dialog box we click the `XOR` option, and type in two binary bits `10` in the box.  
+![XOR](./images/XOR.png)  
+**Figure 33:** XOR'ing the data for `test.txt`. 
+
+We then save the file as `test-xor.txt` into our working folder. 
+![save_xor](./images/save_xor.png)  
+**Figure 34:** Save as `test-xor.txt`. 
+
+Next, perform the XOR towards `test-xor.txt` to recover the message by opening it in Winhex, and repeating the previous steps.  
+![xor_pre](./images/xor_pre.png)  
+**Figure 35:** `test-xor.txt` before performing XOR.  
+
+![xor_post](./images/xor_post.png)  
+**Figure 36:** `test-xor.txt` after performing XOR.  
+
+As we can see from Figure 36, we've recovered the secret message by XOR'ing it again.   
+
 
 ## Questions  
 1. To reveal the hidden data using S-Tools, which information are required?  
