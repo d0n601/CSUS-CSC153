@@ -68,4 +68,37 @@ The next phase is to analyze the files in the command line using the command `co
 
 We can see by opening `scene-compare.txt` the discrepancies between the two files.  
 ![13_compare_text](./images/13_compare_text.png)  
-**Figure 14:** Discrepancies between `scene.bmp` and `scene-steg.bmp`.    
+**Figure 14:** Discrepancies between `scene.bmp` and `scene-steg.bmp`.  
+
+### Part 4: Extract the hidden messages/files  
+Opening up S-Tools again, we'll extract the hidden message from `scene-steg.bmp` by dragging it into the S-Tools Window.  
+![14_scene_steg_drag_again](./images/14_scene_steg_drag_again.png)  
+**Figure 15:** Opening `scene-steg.bmp` once again in S-Tools.  
+
+Right clicking on the image and choosing `Reveal` will prompt us for the pass phrase.  
+![15_reveal](./images/15_reveal.png)  
+**Figure 16:** Choosing Reveal.  
+
+![16_reveal_prompt](./images/16_reveal_prompt.png)  
+**Figure 17:** Reveal prompting us for password and decryption algorithm.  
+
+In the new opened window, we will right click the rtf file `hidden.rtf` and choose save as, and open the `hidden.rtf` file to view the content. Comparing it with the hidden file we used in part 3 to see if they are the same.  
+![17_save_hidden_rtf](./images/17_save_hidden_rtf.png)  
+**Figure 18:** Saving file hidden inside image.  
+
+![18_open_hidden](./images/18_open_hidden.png)  
+**Figure 19:** Opening hidden file extracted from image. 
+
+As we can see from Figure 19 the file hidden inside the image matches what we put there in Part 3.    
+
+Now we repeat the previous steps for the file `fun-steg.bmp` to recover the hidden message.  
+![19_reveal_again](./images/19_reveal_again.png)  
+**Figure 20:** Reveal hidden data from `fun-steg.bmp`.  
+
+![20_save_secret](./images/20_save_secret.png)  
+**Figure 21:** Saving secret text file hidden inside image.  
+
+As we can tell from Figure 22 below, the hidden file inside of the image matches what we placed there previously.  
+![21_open](./images/21_open.png)  
+**Figure 21:** Extracted hidden `.txt` file from `fun-steg.bmp`.
+
