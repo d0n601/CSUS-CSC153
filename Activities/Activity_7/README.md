@@ -162,7 +162,7 @@ As we can see from the hash outputs above, and in Figures 29, 30, and 31, the MD
 For this portion we'll create a new text file named `test.txt`, and then type in a short message in the file, such as our name.
 >Ryan Kozak oh hi!!!  
 
-![text_txt](./images/text_txt.png)  
+![test_txt](./images/test_txt.png)  
 **Figure 32:** Creating `test.txt`.  
 
 Now we start Winhex and open the file. Next we select all the data and choose `Edit->Modify Data`. In the dialog box we click the `XOR` option, and type in two binary bits `10` in the box.  
