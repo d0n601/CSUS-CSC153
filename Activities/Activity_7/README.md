@@ -186,10 +186,34 @@ As we can see from Figure 36, we've recovered the secret message by XOR'ing it a
 ## Questions  
 1. To reveal the hidden data using S-Tools, which information are required?  
 
-2. In Part 3, Are there any differences between scene.bmp and scene-steg.bmp? Please take a screenshot to show the differences.  
+*  You open the file which contains the hidden data, right click and select `reveal`. You then must input the password, confirm it, select the encryption algorithm, and the data is available to you to see in a new dialog window.  
+![15_reveal](./images/15_reveal.png)  
+**Figure 37:** Choosing Reveal.  
 
-3. In Part 3, Are there any differences between fun.bmp and fun-steg.bmp? Please take a screenshot to show the differences.  
+![16_reveal_prompt](./images/16_reveal_prompt.png)  
+**Figure 38:** Reveal prompting us for password and decryption algorithm.  
 
-4. In Part 5, among the hash values for message.txt, message-shift-right.txt, and message-shift- left.txt, which ones are the same? Please take a screenshot to prove your answer.  
+
+2. In Part 3, Are there any differences between `scene.bmp` and `scene-steg.bmp`?  
+* There definitely is, because we've hidden data inside `scene-steg.bmp`. This can be confirmed by the command `comp scene.bmp scene-steg.bmp > scene-compare.txt`.  
+![12_compare](./images/12_compare.png)  
+**Figure 39:** Comparing files via the Windows command prompt.  
+
+3. In Part 3, Are there any differences between `fun.bmp` and `fun-steg.bmp`? 
+* Again, just like in question 2, there definitely is. This is because we've hidden data inside `fun-steg.bmp`. This can be confirmed by the command `comp fun.bmp fun-steg.bmp > fun-compare.txt`.
+![f](./images/f.png)  
+**Figure 40:** Comparing files via the Windows command prompt.  
+![fc](./images/fc.png)  
+**Figure 41:** Differences between `fun.bmp` and `fun-steg.bmp`.  
+
+4. In Part 5, among the hash values for `message.txt`, `message-shift-right.txt`, and `message-shift- left.txt`, which ones are the same?  
+* The hash values for `message.txt` and `message-shift-right.txt` match, because `message-shift-right.txt` is a recovered (decrypted) version of `message.txt`.  
+![messge_md5](./images/messge_md5.png)  
+**Figure 42:** MD5 hash for `message.txt`.  
+![message_r_hash](./images/message_r_hash.png)  
+**Figure 43:** Md5 Hash for `message-shif-right.txt` matches Figure 42.  
 
 5. In class, we’ve discussed that INFORMATION XOR RANDOM_NUMBER = NONSENSE. What will be generated if we do NONSENSE XOR RANDOM_NUMBER?  
+* Then we get INFORMATION back once more. This is demonstrated by the results of Part 6. It's just really week (psudo) encryption, where the key is NONSENSE. We can see in Part 6 our key would just be `0x10`. This is how we're able to recover the data again by XOR'ing the XOR'd file.  
+![xor_post](./images/xor_post.png)  
+**Figure 44:** `test-xor.txt` after performing XOR.  
