@@ -81,11 +81,11 @@ You can move around to display the secret message. You may also choose different
 3. Take screenshots to document what you’ve done in Step 13, 16, and 23.  
 	* We save the secret message, encoded as an audio file.  
 	![step13](./images/step13.png)    
-	**Figure 12:** Saving `secretmessage.wmv`.  
+	**Figure 12:** Saving `secretmessage.wmv`, this is step 13.  
 
 	* In this step we moved `secretmessage.wmv` to the end of `carrysong.wav`.  
 	![cut_move](./images/cut_move.png)  
-	**Figure 13:** Moving `secretmessage.wmv` to the end of `carrysong.wav`.
+	**Figure 13:** Moving `secretmessage.wmv` to the end of `carrysong.wav`, this is step 16.
 
 	* We open Sonic Visualizer, then select `File->Open` and choose `carrysong-with secred message.wav`. After this we click `Layer->Add Spectrogram->carrysong-with secret message.wav: All Channels Mixed`.  
 	![all_channels_mixed](./images/all_channels_mixed.png)  
