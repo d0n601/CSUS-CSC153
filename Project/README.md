@@ -2,9 +2,6 @@
 ### CSC 153 - Computer Forensics Principles and Practice
 
 
-## Encryption  
-Yay VeraCrypt!  
-
 ## Stenography  
 ### Hiding Data in Bad Blocks
 Before doing anything, we should have already created an encrypted container via VeraCrypt, that contains a hidden volume. Next, we plugin a USB drive and see where the drive is at via `sudo fdisk -l`. The following steps will assume it's `/dev/sdc`.  
