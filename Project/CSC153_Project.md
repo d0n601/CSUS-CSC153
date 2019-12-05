@@ -284,7 +284,7 @@ Looking at the data run for File 3 in WinHex, we can see that it's been overwrit
 # Video  
 In the interest of keeping this paper under the 20 page limit, screen shots of every individual step were not included. Our project's video contains a step by step guide to accomplish the creation of a hidden volume, how to hide data in bad blocks, and how to effectively destroy data using CClean and Eraser.
 
-See Our Video **[Here](VIDEO LINK GO HERE OK!)**
+See Our Video **[Here](https://drive.google.com/file/d/1SqPaiKMv9W3ZwMYqf4dNGc-OdeTBWtMN/view)**
 
 # Conclusion  
 Through the combination of Encryption and Stenography we've developed an effective method for hiding data from forensic analysts. Our encrypted files do not appear to exist at all on the drive, but if they were to be discovered, the additional protection of a hidden volume allows us to provide a decoy key. The decoy data will serve the purpose of granting us plausible deniability, as there is still no way to determine the secret data exists as well. 
