@@ -9,10 +9,12 @@ titlepage: true
 titlepage-text-color: "FFFFFF"
 titlepage-color: "004E36"
 titlepage-rule-color: "C4B581"
+toc: true
 toc-own-page: true
 logo: "./images/csus.png"
 logo-width: 150
 ...
+
 
 # Project Goal  
 The goal of our project was to explore and develop various anti-forensic methodologies. In other words, we were looking to apply our knowledge of computer forensics to obfuscate data and destroy data, such that other forensic analysts could not discover or recover said data during an investigation.​ ​This project was to simulate a scenario in which a suspect had advanced knowledge of computer forensics, anti-forensic tools, and how to use them.
